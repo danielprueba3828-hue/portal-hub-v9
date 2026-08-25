@@ -68,8 +68,29 @@ export default function GestionMetas() {
     { id: 4, nombre: 'Período 4 (25 - 31 Ago)', color: '#FFCC99', dias: [25,26,27,28,29,30,31] }
   ]);
 
-  const [selectedPeriodId, setSelectedPeriodId] = useState(3); // Default Periodo 3 (17-24 Ago)
-  const [selectedDay, setSelectedDay] = useState(24); // Hoy: día 24
+  const getTodayDayEcuador = () => {
+    try {
+      const now = new Date();
+      const ecuadorStr = now.toLocaleDateString('en-CA', { timeZone: 'America/Guayaquil' });
+      const parts = ecuadorStr.split('-');
+      return parseInt(parts[2], 10) || now.getDate();
+    } catch (e) {
+      return new Date().getDate();
+    }
+  };
+
+  const getPeriodForDay = (day) => {
+    if (day <= 8) return 1;
+    if (day <= 16) return 2;
+    if (day <= 24) return 3;
+    return 4;
+  };
+
+  const initialTodayDay = getTodayDayEcuador();
+  const initialPeriodId = getPeriodForDay(initialTodayDay);
+
+  const [selectedPeriodId, setSelectedPeriodId] = useState(initialPeriodId);
+  const [selectedDay, setSelectedDay] = useState(initialTodayDay);
 
   // Estado de Coaching
   const [coachingModalOpen, setCoachingModalOpen] = useState(false);
@@ -235,10 +256,19 @@ export default function GestionMetas() {
       const finalFileName = sanitizedName.toLowerCase().endsWith('.pdf') ? sanitizedName : `${sanitizedName}.pdf`;
       const filePath = `metas-pdf/reporte_metas_${Date.now()}_${finalFileName}`;
 
+      let uploadPayload = file;
+      try {
+        if (file.arrayBuffer) {
+          uploadPayload = await file.arrayBuffer();
+        }
+      } catch (bufErr) {
+        console.warn("No se pudo convertir a ArrayBuffer, usando file directamente:", bufErr);
+      }
+
       const { error: uploadError } = await supabase
         .storage
         .from('evidencias-jefes')
-        .upload(filePath, file, {
+        .upload(filePath, uploadPayload, {
           contentType: 'application/pdf',
           cacheControl: '3600',
           upsert: true
