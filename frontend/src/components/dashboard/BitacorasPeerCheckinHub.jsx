@@ -69,8 +69,8 @@ export default function BitacorasPeerCheckinHub({ isDirectivo, isBodeguero, isLi
   const fetchData = async () => {
     try {
       const [bRes, rRes, cRes, eRes] = await Promise.all([
-        supabase.from('bitacoras_jefes').select('*').order('fecha', { ascending: false }).order('created_at', { ascending: false }).limit(6),
-        supabase.from('reportes_bodega').select('*').order('fecha', { ascending: false }).order('created_at', { ascending: false }).limit(6),
+        supabase.from('bitacoras_jefes').select('*').order('fecha', { ascending: false }),
+        supabase.from('reportes_bodega').select('*').order('fecha', { ascending: false }),
         supabase.from('tienda_lecturas_checkin').select('*').in('tipo', ['bitacora_jefe', 'reporte_bodega']),
         supabase.from('empleados').select('cedula, nombres, apellidos, cargo, rol, zona').eq('activo', true)
       ]);

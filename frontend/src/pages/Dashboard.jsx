@@ -150,8 +150,8 @@ export default function Dashboard() {
       try {
         if (!myCedula) return;
         const [bRes, rRes, cRes] = await Promise.all([
-          supabase.from('bitacoras_jefes').select('id, cedula_jefe, colaborador').order('fecha', { ascending: false }).limit(10),
-          supabase.from('reportes_bodega').select('id, colaborador').order('fecha', { ascending: false }).limit(10),
+          supabase.from('bitacoras_jefes').select('id, cedula_jefe, colaborador').order('fecha', { ascending: false }),
+          supabase.from('reportes_bodega').select('id, colaborador').order('fecha', { ascending: false }),
           supabase.from('tienda_lecturas_checkin').select('referencia_id, usuario_cedula').eq('usuario_cedula', myCedula)
         ]);
 
