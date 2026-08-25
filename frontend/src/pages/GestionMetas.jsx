@@ -5,13 +5,6 @@ import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/layout/Navbar';
 import { parseMetasExcel, syncMetasToSupabase, PERIOD_COLORS, getCollaboratorMeta } from '../services/metasExcelParser';
 import { sendN8nEvent } from '../services/n8nService';
-import * as pdfjsLib from 'pdfjs-dist';
-
-// Configurar el worker de PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
 import { 
   Target, 
   TrendingUp, 
@@ -43,139 +36,61 @@ import {
   Zap,
   MessageSquare
 } from 'lucide-react';
+
 function PdfModalCanvasContent({ pdfUrl, isLight, zoom = 100 }) {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [numPages, setNumPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const canvasRef = useRef(null);
-  const [pdfDoc, setPdfDoc] = useState(null);
 
-  useEffect(() => {
-    if (!pdfUrl) return;
-    let isMounted = true;
-
-    const loadPdf = async () => {
-      setLoading(true);
-      setError(false);
-      try {
-        const response = await fetch(pdfUrl);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const arrayBuffer = await response.arrayBuffer();
-        const uint8Data = new Uint8Array(arrayBuffer);
-
-        const loadingTask = pdfjsLib.getDocument({ data: uint8Data });
-        const doc = await loadingTask.promise;
-        if (isMounted) {
-          setPdfDoc(doc);
-          setNumPages(doc.numPages);
-          setCurrentPage(1);
-        }
-      } catch (err) {
-        console.warn("PDF.js Canvas fetch falló, cambiando a visor Google Docs:", err);
-        if (isMounted) {
-          setError(true);
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    loadPdf();
-    return () => {
-      isMounted = false;
-    };
-  }, [pdfUrl]);
-
-  useEffect(() => {
-    if (!pdfDoc || error) return;
-    let isMounted = true;
-
-    const renderPage = async () => {
-      try {
-        const page = await pdfDoc.getPage(currentPage);
-        if (!isMounted) return;
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        const context = canvas.getContext('2d');
-        const containerWidth = canvas.parentElement?.clientWidth || 800;
-        const baseViewport = page.getViewport({ scale: 1 });
-        const scale = ((containerWidth - 24) / baseViewport.width) * (zoom / 100);
-        const finalScale = Math.max(0.4, scale);
-
-        const viewport = page.getViewport({ scale: finalScale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-        await page.render(renderContext).promise;
-      } catch (err) {
-        console.warn("Error al renderizar página PDF en canvas:", err);
-        if (isMounted) setError(true);
-      }
-    };
-
-    renderPage();
-    return () => {
-      isMounted = false;
-    };
-  }, [pdfDoc, currentPage, error, zoom]);
-
-  if (loading) {
+  if (!pdfUrl) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 space-y-4">
-        <RefreshCw className="w-8 h-8 animate-spin text-rose-500" />
-        <span className="text-xs font-black uppercase tracking-wider text-slate-400">Cargando reporte de ventas PDF...</span>
+      <div className="flex flex-col items-center justify-center p-12 space-y-3 text-slate-400">
+        <FileText className="w-12 h-12 text-slate-500 opacity-60" />
+        <p className="text-sm font-bold">No hay ningún reporte PDF disponible para visualizar.</p>
       </div>
     );
   }
 
-  if (error) {
-    const googleViewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center min-h-[70vh]">
-        <iframe
-          src={googleViewerUrl}
-          title="Visor alternativo PDF"
-          className="w-full h-full min-h-[70vh] rounded-2xl border border-slate-300 dark:border-slate-800 bg-white"
-        />
-      </div>
-    );
-  }
+  const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
 
   return (
     <div className="flex flex-col items-center w-full space-y-4">
-      <div className="overflow-auto max-w-full max-h-[75vh] flex justify-center p-2 rounded-2xl bg-slate-950/40 border border-slate-800/40">
-        <canvas ref={canvasRef} className="max-w-full rounded-lg bg-white shadow-xl" />
+      <div className="w-full relative rounded-2xl overflow-hidden border border-slate-800/50 bg-slate-950/60 min-h-[65vh] flex items-center justify-center">
+        {loading && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-sm z-10 space-y-3">
+            <RefreshCw className="w-8 h-8 animate-spin text-rose-500" />
+            <span className="text-xs font-black uppercase tracking-wider text-slate-300">Cargando reporte de metas PDF...</span>
+          </div>
+        )}
+        <iframe
+          src={googleViewerUrl}
+          title="Reporte Oficial de Metas PDF"
+          onLoad={() => setLoading(false)}
+          className="w-full h-full min-h-[65vh] rounded-2xl border-0 bg-white"
+          allow="fullscreen"
+        />
       </div>
 
-      {numPages > 1 && (
-        <div className={`flex items-center justify-between w-full max-w-md px-4 py-2 rounded-2xl border text-xs font-bold ${
-          isLight ? 'bg-white border-slate-200 text-slate-700 shadow-sm' : 'bg-slate-900 border-slate-800 text-slate-200 shadow-md'
-        }`}>
-          <button
-            disabled={currentPage <= 1}
-            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 text-white disabled:opacity-40 transition cursor-pointer"
-          >
-            Anterior
-          </button>
-          <span>Página {currentPage} de {numPages}</span>
-          <button
-            disabled={currentPage >= numPages}
-            onClick={() => setCurrentPage(prev => Math.min(numPages, prev + 1))}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 text-white disabled:opacity-40 transition cursor-pointer"
-          >
-            Siguiente
-          </button>
-        </div>
-      )}
+      <div className="flex items-center justify-between w-full px-2 pt-2">
+        <a
+          href={pdfUrl}
+          download="Reporte_Metas_Agosto_2026.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black transition active:scale-95 shadow-md shadow-emerald-500/20"
+        >
+          <Download className="w-4 h-4" />
+          <span>Descargar PDF</span>
+        </a>
+
+        <a
+          href={pdfUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black border border-slate-700 transition active:scale-95"
+        >
+          <ExternalLink className="w-4 h-4" />
+          <span>Abrir en Pantalla Completa</span>
+        </a>
+      </div>
     </div>
   );
 }
