@@ -186,7 +186,9 @@ export default function Bitacoras() {
   const [activeTab, setActiveTab] = useState(() => {
     const tabFromUrl = searchParams.get('tab') || location.state?.tab;
     if (tabFromUrl) return tabFromUrl;
-    return isBodeguero && !isDirectivo ? 'enviar_bodega' : 'bitacora_jefatura';
+    if (isBodeguero && !isDirectivo) return 'enviar_bodega';
+    if (!isDirectivo) return 'historial_bitacoras';
+    return 'bitacora_jefatura';
   });
 
   useEffect(() => {
@@ -721,19 +723,21 @@ export default function Bitacoras() {
                 </button>
               </>
             ) : (
-              /* VISTA PARA JEFATURA */
+              /* VISTA PARA JEFATURA Y COLABORADORES */
               <>
-                <button
-                  onClick={() => setActiveTab('bitacora_jefatura')}
-                  className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer shrink-0 ${
-                    activeTab === 'bitacora_jefatura'
-                      ? 'bg-red-600 text-white shadow-md shadow-red-500/30'
-                      : isLight ? 'text-slate-600 hover:bg-slate-100' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <ClipboardList className="w-3.5 h-3.5" />
-                  <span>Llenar Bitácora</span>
-                </button>
+                {isDirectivo && (
+                  <button
+                    onClick={() => setActiveTab('bitacora_jefatura')}
+                    className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer shrink-0 ${
+                      activeTab === 'bitacora_jefatura'
+                        ? 'bg-red-600 text-white shadow-md shadow-red-500/30'
+                        : isLight ? 'text-slate-600 hover:bg-slate-100' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <ClipboardList className="w-3.5 h-3.5" />
+                    <span>Llenar Bitácora</span>
+                  </button>
+                )}
 
                 <button
                   onClick={() => setActiveTab('historial_bitacoras')}
