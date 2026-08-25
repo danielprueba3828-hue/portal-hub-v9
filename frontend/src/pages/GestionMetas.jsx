@@ -218,20 +218,28 @@ export default function GestionMetas() {
   // Manejar Carga de Archivo PDF
   const handlePdfUpload = async (file) => {
     if (!file) return;
-    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+
+    const fileName = file.name || 'reporte_metas.pdf';
+    const fileNameLower = fileName.toLowerCase();
+    const isPdfExt = fileNameLower.endsWith('.pdf') || fileNameLower.includes('pdf') || fileNameLower.includes('reporte') || fileNameLower.includes('venta');
+    const isPdfMime = !file.type || file.type.includes('pdf') || file.type.includes('octet-stream');
+
+    if (!isPdfExt && !isPdfMime) {
       showFeedback('Por favor selecciona un archivo PDF válido.', 'error');
       return;
     }
 
     setPdfUploading(true);
     try {
-      const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      const filePath = `metas-pdf/reporte_metas_${Date.now()}_${sanitizedName}`;
+      const sanitizedName = fileName.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const finalFileName = sanitizedName.toLowerCase().endsWith('.pdf') ? sanitizedName : `${sanitizedName}.pdf`;
+      const filePath = `metas-pdf/reporte_metas_${Date.now()}_${finalFileName}`;
 
       const { error: uploadError } = await supabase
         .storage
         .from('evidencias-jefes')
         .upload(filePath, file, {
+          contentType: 'application/pdf',
           cacheControl: '3600',
           upsert: true
         });
@@ -245,29 +253,36 @@ export default function GestionMetas() {
 
       const publicUrl = publicUrlData?.publicUrl;
 
-      // Actualizar en tienda_stats
+      // Actualizar en tienda_stats usando upsert para asegurar persistencia en BD
       await supabase
         .from('tienda_stats')
-        .update({
+        .upsert({
+          id: 1,
           pdf_url: publicUrl,
-          pdf_name: file.name,
+          pdf_name: fileName,
           updated_at: new Date().toISOString()
-        })
-        .gt('id', 0);
+        });
 
       setPdfUrl(publicUrl);
-      setPdfName(file.name);
+      setPdfName(fileName);
       localStorage.setItem('marathon_metas_pdf_url', publicUrl);
-      localStorage.setItem('marathon_metas_pdf_name', file.name);
+      localStorage.setItem('marathon_metas_pdf_name', fileName);
 
-      // Disparar Webhook Automático hacia n8n
-      sendN8nEvent('PDF_REPORTE_PUBLICADO', {
-        documento_nombre: file.name,
-        pdf_url: publicUrl,
-        publicado_por: myNombres
-      }, user?.user_metadata);
+      // Disparar Notificación para todo el equipo en la campanita
+      try {
+        await supabase.from('notificaciones').insert({
+          rol_destino: 'todos',
+          tipo: 'avance_pdf',
+          titulo: '📄 Nuevo PDF de Avances de Ventas',
+          mensaje: `Jefatura ha publicado el reporte de avances: ${fileName}`,
+          ruta_destino: '/metas',
+          leido: false
+        });
+      } catch (e) {
+        console.warn("No se pudo registrar la notificación push:", e);
+      }
 
-      showFeedback('¡Reporte PDF de metas subido y disponible para todo el equipo!');
+      showFeedback('¡Reporte PDF de metas subido y publicado con éxito para todo el equipo!');
     } catch (err) {
       console.error('Error subiendo PDF:', err);
       showFeedback('Error al subir PDF: ' + err.message, 'error');
@@ -452,7 +467,7 @@ export default function GestionMetas() {
                 <input
                   ref={pdfInputRef}
                   type="file"
-                  accept=".pdf,application/pdf"
+                  accept=".pdf,application/pdf,*/*"
                   onChange={(e) => {
                     if (e.target.files?.length) {
                       handlePdfUpload(e.target.files[0]);

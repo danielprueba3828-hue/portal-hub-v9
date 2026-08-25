@@ -1873,7 +1873,7 @@ export default function MetasAdmin() {
               <input 
                 key={pendingUploadData ? 'has-pending-pdf' : 'no-pending-pdf'}
                 type="file" 
-                accept=".pdf" 
+                accept=".pdf,application/pdf,*/*" 
                 onChange={handlePdfUpload} 
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
               />
