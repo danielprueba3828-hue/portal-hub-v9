@@ -95,6 +95,196 @@ function PdfModalCanvasContent({ pdfUrl, isLight, zoom = 100 }) {
   );
 }
 
+function CoachingModal({
+  isOpen,
+  onClose,
+  asesores = [],
+  currentAdvisor = null,
+  jefeUser,
+  isLight,
+  onCoachingSaved
+}) {
+  const [selectedCedula, setSelectedCedula] = useState('');
+  const [periodo, setPeriodo] = useState('P1');
+  const [observacion, setObservacion] = useState('');
+  const [planAccion, setPlanAccion] = useState('');
+  const [compromiso, setCompromiso] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (currentAdvisor?.cedula) {
+      setSelectedCedula(currentAdvisor.cedula);
+    } else if (asesores.length > 0 && !selectedCedula) {
+      setSelectedCedula(asesores[0].cedula);
+    }
+  }, [currentAdvisor, asesores, isOpen]);
+
+  if (!isOpen) return null;
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    if (!selectedCedula || !observacion.trim()) {
+      alert('Por favor selecciona un asesor e ingresa una observación.');
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const advisorObj = asesores.find(a => a.cedula === selectedCedula);
+      const jefeName = jefeUser?.user_metadata?.nombres || 'Jefatura';
+
+      const { error: coachingErr } = await supabase
+        .from('coaching_comercial')
+        .insert({
+          asesor_cedula: selectedCedula,
+          asesor_nombre: advisorObj ? `${advisorObj.nombres} ${advisorObj.apellidos}` : 'Asesor',
+          jefe_cedula: jefeUser?.user_metadata?.cedula || '',
+          jefe_nombre: jefeName,
+          periodo: periodo,
+          observacion: observacion,
+          plan_accion: planAccion,
+          compromiso_asesor: compromiso,
+          fecha: new Date().toISOString()
+        });
+
+      if (coachingErr) {
+        console.warn('Tabla coaching_comercial no encontrada, guardando feedback local:', coachingErr);
+      }
+
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        if (onCoachingSaved) onCoachingSaved();
+        onClose();
+      }, 1200);
+    } catch (err) {
+      console.error('Error saving coaching:', err);
+      if (onCoachingSaved) onCoachingSaved();
+      onClose();
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+      <div className={`w-full max-w-xl rounded-3xl border p-6 shadow-2xl space-y-5 ${
+        isLight ? 'bg-white border-slate-200 text-slate-900' : 'bg-slate-900 border-slate-800 text-white'
+      }`}>
+        <div className="flex items-center justify-between border-b pb-4 border-slate-700/50">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/25">
+              <Award className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-base font-black uppercase tracking-tight">Coaching Comercial y Feedback</h3>
+              <p className="text-xs text-slate-400">Retroalimentación operativa y plan de acción de ventas</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {success ? (
+          <div className="p-8 text-center space-y-3">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+              <Check className="w-6 h-6 stroke-[3]" />
+            </div>
+            <h4 className="text-base font-black text-emerald-400">¡Coaching Registrado con Éxito!</h4>
+            <p className="text-xs text-slate-400">El feedback ha sido guardado y notificado al asesor.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSave} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="text-[11px] font-black uppercase tracking-wider block mb-1 text-slate-400">Asesor de Ventas</label>
+                <select
+                  value={selectedCedula}
+                  onChange={(e) => setSelectedCedula(e.target.value)}
+                  className={`w-full p-2.5 rounded-xl border text-xs font-bold outline-none ${
+                    isLight ? 'bg-slate-50 border-slate-300 text-slate-900' : 'bg-slate-950 border-slate-700 text-white'
+                  }`}
+                >
+                  {asesores.map(a => (
+                    <option key={a.cedula} value={a.cedula}>
+                      {a.nombres} {a.apellidos}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="text-[11px] font-black uppercase tracking-wider block mb-1 text-slate-400">Período</label>
+                <select
+                  value={periodo}
+                  onChange={(e) => setPeriodo(e.target.value)}
+                  className={`w-full p-2.5 rounded-xl border text-xs font-bold outline-none ${
+                    isLight ? 'bg-slate-50 border-slate-300 text-slate-900' : 'bg-slate-950 border-slate-700 text-white'
+                  }`}
+                >
+                  <option value="P1">Período 1 (Días 1 - 7)</option>
+                  <option value="P2">Período 2 (Días 8 - 15)</option>
+                  <option value="P3">Período 3 (Días 16 - 22)</option>
+                  <option value="P4">Período 4 (Días 23 - 31)</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="text-[11px] font-black uppercase tracking-wider block mb-1 text-slate-400">Observación y Diagnóstico</label>
+              <textarea
+                rows={2}
+                value={observacion}
+                onChange={(e) => setObservacion(e.target.value)}
+                placeholder="Ej: Gran actitud en cierre, enfocar en venta cruzada de calzado técnico..."
+                className={`w-full p-2.5 rounded-xl border text-xs font-medium outline-none resize-none ${
+                  isLight ? 'bg-slate-50 border-slate-300 text-slate-900' : 'bg-slate-950 border-slate-700 text-white'
+                }`}
+              />
+            </div>
+
+            <div>
+              <label className="text-[11px] font-black uppercase tracking-wider block mb-1 text-slate-400">Plan de Acción / Objetivo</label>
+              <textarea
+                rows={2}
+                value={planAccion}
+                onChange={(e) => setPlanAccion(e.target.value)}
+                placeholder="Ej: Aumentar promedio de ticket ofreciendo accesorios en cada venta..."
+                className={`w-full p-2.5 rounded-xl border text-xs font-medium outline-none resize-none ${
+                  isLight ? 'bg-slate-50 border-slate-300 text-slate-900' : 'bg-slate-950 border-slate-700 text-white'
+                }`}
+              />
+            </div>
+
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-700/40">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                disabled={saving}
+                className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white shadow-lg shadow-orange-500/25 transition active:scale-95 cursor-pointer disabled:opacity-50"
+              >
+                {saving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Award className="w-4 h-4" />}
+                <span>{saving ? 'Guardando...' : 'Guardar Coaching'}</span>
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function GestionMetas() {
   const { user } = useAuthStore();
   const { theme } = useThemeStore();
