@@ -18,16 +18,20 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#060b17" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
   </head>
   <body class="bg-[#060b17] text-white font-sans antialiased" style="background-color: #060b17 !important; margin: 0; padding: 0;">
     <div id="root" style="background-color: #060b17 !important; min-height: 100vh;"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
+      // Desregistrar Service Workers antiguos para forzar la carga inmediata de la última versión en vivo
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('PWA Service Worker registrado:', reg.scope))
-            .catch(err => console.log('Error registrando Service Worker:', err));
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (let registration of registrations) {
+            registration.unregister();
+          }
         });
       }
     </script>
