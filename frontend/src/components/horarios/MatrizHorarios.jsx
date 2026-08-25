@@ -19,10 +19,10 @@ import {
 } from 'lucide-react';
 
 export default function MatrizHorarios({
-  year,
-  month,
-  employees,
-  turnosMap,
+  year = new Date().getFullYear(),
+  month = new Date().getMonth() + 1,
+  employees = [],
+  turnosMap = {},
   onCellClick,
   activePaintShift = null,
   matrixGroupingMode = 'cargo',
@@ -45,7 +45,7 @@ export default function MatrizHorarios({
 
   // Filtrar empleados
   const filteredEmployees = useMemo(() => {
-    return employees.filter(emp => {
+    return (employees || []).filter(emp => {
       const fullName = `${emp.nombres || ''} ${emp.apellidos || ''}`.toLowerCase();
       const cedula = String(emp.cedula || '');
       const matchesSearch = !searchTerm || fullName.includes(searchTerm.toLowerCase()) || cedula.includes(searchTerm);
@@ -56,7 +56,7 @@ export default function MatrizHorarios({
 
   // Análisis de cobertura
   const coverageData = useMemo(() => {
-    return analyzeStaffingCoverage(days, employees, turnosMap);
+    return analyzeStaffingCoverage(days, employees || [], turnosMap || {});
   }, [days, employees, turnosMap]);
 
   // Renderizador de badge de turno
@@ -217,8 +217,13 @@ export default function MatrizHorarios({
                 let totalHours = 0;
                 let daysOff = 0;
 
+                const map = turnosMap || {};
+                const rawCed = String(emp.cedula || '').trim();
+                const paddedCed = (rawCed.length > 0 && rawCed.length < 10) ? rawCed.padStart(10, '0') : rawCed;
+                const strippedCed = rawCed.replace(/^0+/, '');
+
                 days.forEach(d => {
-                  const shift = turnosMap[`${emp.cedula}_${d.dateStr}`];
+                  const shift = map[`${rawCed}_${d.dateStr}`] || map[`${paddedCed}_${d.dateStr}`] || (strippedCed ? map[`${strippedCed}_${d.dateStr}`] : null);
                   const classification = classifyShift(shift);
                   if (classification.isOff) {
                     daysOff++;
@@ -267,7 +272,7 @@ export default function MatrizHorarios({
                     </td>
 
                     {days.map(d => {
-                      const shift = turnosMap[`${emp.cedula}_${d.dateStr}`];
+                      const shift = map[`${rawCed}_${d.dateStr}`] || map[`${paddedCed}_${d.dateStr}`] || (strippedCed ? map[`${strippedCed}_${d.dateStr}`] : null);
                       const isToday = d.dateStr === todayStr;
 
                       return (

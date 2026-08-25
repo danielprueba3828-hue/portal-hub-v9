@@ -16,7 +16,6 @@ import TurnoEditModal from '../components/horarios/TurnoEditModal';
 import FloatingShiftPainter from '../components/horarios/FloatingShiftPainter';
 
 // Servicios de exportación y algoritmos
-import { exportSchedulePDF, exportScheduleExcel } from '../services/scheduleExporter';
 import { generateSmartSchedule } from '../services/scheduleEngine';
 
 export default function Calendario() {
@@ -57,8 +56,14 @@ export default function Calendario() {
   const now = new Date();
   const [activeYear, setActiveYear] = useState(now.getFullYear());
   const [activeMonth, setActiveMonth] = useState(now.getMonth() + 1);
-  const [activeTab, setActiveTab] = useState(isDirectivo ? 'matriz' : 'personal');
+  const [activeTab, setActiveTab] = useState('personal');
   const [matrixGroupingMode, setMatrixGroupingMode] = useState('cargo'); // 'cargo' | 'flat'
+
+  useEffect(() => {
+    if (isDirectivo) {
+      setActiveTab('matriz');
+    }
+  }, [isDirectivo]);
 
   // Filtros
   const [searchTerm, setSearchTerm] = useState('');
@@ -173,16 +178,28 @@ export default function Calendario() {
     }
   }, [activeYear, activeMonth, empleados, saveTurnosMasivos]);
 
-  // Exportar PDF
-  const handleExportPDF = useCallback(() => {
-    const storeName = tiendaSeleccionada?.nombre || 'Marathon Sports';
-    exportSchedulePDF(activeYear, activeMonth, empleados, turnosMap, storeName);
+  // Exportar PDF con import dinámico
+  const handleExportPDF = useCallback(async () => {
+    try {
+      const { exportSchedulePDF } = await import('../services/scheduleExporter');
+      const storeName = tiendaSeleccionada?.nombre || 'Marathon Sports';
+      exportSchedulePDF(activeYear, activeMonth, empleados, turnosMap, storeName);
+    } catch (err) {
+      console.error('Error al exportar PDF:', err);
+      alert('Error al generar PDF: ' + (err.message || 'Desconocido'));
+    }
   }, [activeYear, activeMonth, empleados, turnosMap, tiendaSeleccionada]);
 
-  // Exportar Excel
-  const handleExportExcel = useCallback(() => {
-    const storeName = tiendaSeleccionada?.nombre || 'Marathon Sports';
-    exportScheduleExcel(activeYear, activeMonth, empleados, turnosMap, storeName);
+  // Exportar Excel con import dinámico
+  const handleExportExcel = useCallback(async () => {
+    try {
+      const { exportScheduleExcel } = await import('../services/scheduleExporter');
+      const storeName = tiendaSeleccionada?.nombre || 'Marathon Sports';
+      exportScheduleExcel(activeYear, activeMonth, empleados, turnosMap, storeName);
+    } catch (err) {
+      console.error('Error al exportar Excel:', err);
+      alert('Error al generar Excel: ' + (err.message || 'Desconocido'));
+    }
   }, [activeYear, activeMonth, empleados, turnosMap, tiendaSeleccionada]);
 
   const isLight = theme === 'clasico';
@@ -241,6 +258,18 @@ export default function Calendario() {
             year={activeYear}
             month={activeMonth}
             turnosMap={turnosMap}
+            theme={theme}
+          />
+        )}
+
+        {/* Floating Shift Painter for Directivos */}
+        {activeTab === 'matriz' && isDirectivo && (
+          <FloatingShiftPainter
+            activePaintShift={activePaintShift}
+            onSelectPaintShift={setActivePaintShift}
+            isDirectivo={isDirectivo}
+            onRunAutoSchedule={handleRunAutoSchedule}
+            saving={saving}
             theme={theme}
           />
         )}
