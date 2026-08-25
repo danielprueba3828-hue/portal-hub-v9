@@ -19,11 +19,14 @@ export const useAuthStore = create((set, get) => ({
         return false;
       }
 
-      // Buscar por cédula o email
+      const paddedInput = (cleanInput.length > 0 && cleanInput.length < 10) ? cleanInput.padStart(10, '0') : cleanInput;
+      const strippedInput = cleanInput.replace(/^0+/, '');
+
+      // Buscar por cédula o email (robusto ante ceros a la izquierda)
       const { data: empList, error: empErr } = await supabase
         .from('empleados')
         .select('*')
-        .or(`cedula.eq.${cleanInput},email.ilike.${cleanInput}`);
+        .or(`cedula.eq.${cleanInput},cedula.eq.${paddedInput},cedula.eq.${strippedInput},email.ilike.${cleanInput}`);
 
       if (empErr) throw empErr;
 
