@@ -108,6 +108,13 @@ export default function HorarioPersonal({
   // Días de todo el mes (para Jefatura)
   const allMonthDays = useMemo(() => getDaysInMonthArray(year, month), [year, month]);
 
+  const getShift = useCallback((dateStr) => {
+    const rawCed = String(cedula || '').trim();
+    const paddedCed = (rawCed.length > 0 && rawCed.length < 10) ? rawCed.padStart(10, '0') : rawCed;
+    const strippedCed = rawCed.replace(/^0+/, '');
+    return turnosMap[`${rawCed}_${dateStr}`] || turnosMap[`${paddedCed}_${dateStr}`] || turnosMap[`${strippedCed}_${dateStr}`];
+  }, [cedula, turnosMap]);
+
   // Estadísticas del mes (para Jefatura)
   const monthlyStats = useMemo(() => {
     let totalHours = 0;
@@ -115,7 +122,7 @@ export default function HorarioPersonal({
     let daysOff = 0;
 
     allMonthDays.forEach(d => {
-      const shift = turnosMap[`${cedula}_${d.dateStr}`];
+      const shift = getShift(d.dateStr);
       const classification = classifyShift(shift);
 
       if (classification.isOff) {
@@ -131,7 +138,7 @@ export default function HorarioPersonal({
       daysWorked,
       daysOff
     };
-  }, [allMonthDays, turnosMap, cedula]);
+  }, [allMonthDays, getShift]);
 
   // Estadísticas de la semana seleccionada (para Asesores y demás cargos)
   const weeklyStats = useMemo(() => {
@@ -140,7 +147,7 @@ export default function HorarioPersonal({
     let daysOff = 0;
 
     weekDays.forEach(d => {
-      const shift = turnosMap[`${cedula}_${d.dateStr}`];
+      const shift = getShift(d.dateStr);
       const classification = classifyShift(shift);
 
       if (classification.isOff) {
@@ -156,9 +163,9 @@ export default function HorarioPersonal({
       daysWorked,
       daysOff
     };
-  }, [weekDays, turnosMap, cedula]);
+  }, [weekDays, getShift]);
 
-  const todayShift = turnosMap[`${cedula}_${todayStr}`];
+  const todayShift = getShift(todayStr);
   const todayClassification = classifyShift(todayShift);
 
   const startWeekLabel = weekDays[0]?.fullFormatted || '';
@@ -366,10 +373,9 @@ export default function HorarioPersonal({
             </div>
           </div>
 
-          {/* Grid de los 7 Días de la Semana */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3.5">
             {weekDays.map(d => {
-              const shift = turnosMap[`${cedula}_${d.dateStr}`];
+              const shift = getShift(d.dateStr);
               const classification = classifyShift(shift);
               const isToday = d.dateStr === todayStr;
               const hours = calculateShiftHours(shift);
@@ -493,7 +499,7 @@ export default function HorarioPersonal({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3">
             {allMonthDays.map(d => {
-              const shift = turnosMap[`${cedula}_${d.dateStr}`];
+              const shift = getShift(d.dateStr);
               const classification = classifyShift(shift);
               const isToday = d.dateStr === todayStr;
               const hours = calculateShiftHours(shift);

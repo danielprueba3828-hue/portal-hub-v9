@@ -29,7 +29,15 @@ export const useHorarioStore = create((set, get) => ({
     const map = {};
     (turnosList || []).forEach(t => {
       if (t.empleado_cedula && t.fecha) {
-        map[`${t.empleado_cedula}_${t.fecha}`] = t;
+        const rawCed = String(t.empleado_cedula).trim();
+        const paddedCed = (rawCed.length > 0 && rawCed.length < 10) ? rawCed.padStart(10, '0') : rawCed;
+        const strippedCed = rawCed.replace(/^0+/, '');
+
+        map[`${rawCed}_${t.fecha}`] = t;
+        map[`${paddedCed}_${t.fecha}`] = t;
+        if (strippedCed) {
+          map[`${strippedCed}_${t.fecha}`] = t;
+        }
       }
     });
     return map;

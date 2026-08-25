@@ -145,7 +145,7 @@ export function calculateShiftHours(turno) {
  * Clasifica el turno en Apertura, Intermedio, Cierre o Libre con colores dinámicos
  */
 export function classifyShift(turno) {
-  if (!turno) return { category: 'Sin asignar', badgeColor: 'slate', isOff: false, label: '-', short: '-' };
+  if (!turno) return { category: 'Descanso', badgeColor: 'slate', isOff: true, short: 'L', label: 'Descanso / Libre' };
   const tipo = String(turno.tipo_turno || '').trim().toUpperCase();
   const start = turno.hora_inicio || '';
 
