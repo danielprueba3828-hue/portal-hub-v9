@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PORTAL HUB V9 — Portal Shopping Carapungo</title>
+    <!-- Google Fonts: Barlow Condensed, Figtree y Outfit para una estética moderna y dinámica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,900;1,600;1,900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Outfit:wght@300..900&display=swap" rel="stylesheet">
+    <meta name="description" content="PORTAL HUB V9 — Portal oficial para gestión de horarios, metas de venta y reportes operativos." />
+    <!-- PWA Config & iOS Support -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#060b17" />
+    <script type="module" crossorigin src="/assets/index-Bsd0yG4q.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B00c7vvB.css">
+  </head>
+  <body class="bg-[#060b17] text-white font-sans antialiased" style="background-color: #060b17 !important; margin: 0; padding: 0;">
+    <div id="root" style="background-color: #060b17 !important; min-height: 100vh;"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('PWA Service Worker registrado:', reg.scope))
+            .catch(err => console.log('Error registrando Service Worker:', err));
+        });
+      }
+    </script>
+  </body>
+</html>

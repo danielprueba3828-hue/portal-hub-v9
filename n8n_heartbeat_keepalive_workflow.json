@@ -1,0 +1,90 @@
+{
+  "name": "Marathon MCP1 - Heartbeat 24/7 Keep-Alive (Render.com)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "schedule-ping-5min",
+      "name": "Cada 5 Minutos (Heartbeat)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://localhost:5678/webhook/heartbeat-ping",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "http-ping-self",
+      "name": "Auto-Ping a Render",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "heartbeat-ping",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-heartbeat",
+      "name": "Webhook Heartbeat Receptor",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [220, 500],
+      "webhookId": "heartbeat-ping"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"OK\",\n  \"service\": \"n8n-marathon-mcp1\",\n  \"render_status\": \"active_24_7\",\n  \"timestamp\": \"={{ $now }}\"\n}",
+        "options": {}
+      },
+      "id": "respond-ok",
+      "name": "Responder OK 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [440, 500]
+    }
+  ],
+  "connections": {
+    "Cada 5 Minutos (Heartbeat)": {
+      "main": [
+        [
+          {
+            "node": "Auto-Ping a Render",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Heartbeat Receptor": {
+      "main": [
+        [
+          {
+            "node": "Responder OK 200",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

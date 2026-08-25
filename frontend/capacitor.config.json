@@ -1,0 +1,15 @@
+﻿{
+  "appId": "ec.marathon.portal.mcp1",
+  "appName": "PORTAL HUB V9",
+  "webDir": "../dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon_config_sample",
+      "iconColor": "#003B9E"
+    }
+  }
+}

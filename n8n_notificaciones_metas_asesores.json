@@ -1,0 +1,135 @@
+{
+  "name": "Marathon MCP1 - Notificaciones Diarias de Metas a Asesores",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "30 8 * * *"
+            }
+          ]
+        }
+      },
+      "id": "cron-matutino-830am",
+      "name": "Disparo Diario 08:30 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [180, 260]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portal-mcp1-events",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-portal-marathon",
+      "name": "Webhook Portal Marathon (Al Subir Metas)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [180, 460],
+      "webhookId": "portal-mcp1-events"
+    },
+    {
+      "parameters": {
+        "url": "https://aqknspjscmyvdabzgmwz.supabase.co/rest/v1/metas?select=*",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "sb_publishable_sXs0mE77V2HBU4ucEHvZXQ_I8qk9Oo0"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer sb_publishable_sXs0mE77V2HBU4ucEHvZXQ_I8qk9Oo0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fetch-metas-supabase",
+      "name": "Consultar Metas Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [440, 360]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Lista de frases motivacionales Marathon Sports\nconst FRASES = [\n  \"El cliente vino solo 'a mirar'... pero hoy sale con calzado de alta gama, camiseta y 3 pares de medias Marathon. ¡A romperla!\",\n  \"Nivel de energía: 100% actitud, 0% excusas. ¡Hoy Portal Carapungo lidera la tabla de ventas!\",\n  \"Si los atletas entrenan 4 años para 10 segundos de gloria, ¡tú puedes superar tu meta de hoy en este turno!\",\n  \"Cada '¿Tiene en talla 39?' es un pase gol frente al arco. ¡Asesora con pasión y cierra con fuerza!\",\n  \"Hoy no se nos escapa ni un ticket. Venta cruzada activa: 'Llévese el limpiador, las medias y las canilleras de una vez'.\",\n  \"El éxito en piso se construye cliente a cliente. Saluda con entusiasmo y transmite la grandeza de nuestra marca.\",\n  \"Ponte las zapatillas más cómodas y la mejor sonrisa: hoy vas a superar todas tus marcas personales.\",\n  \"Tu meta diaria no es tu techo, es tu punto de partida. ¡Ve por ese ticket doble hoy!\"\n];\n\nconst now = new Date();\nconst currentDay = now.getDate() || 24;\nconst randomQuote = FRASES[Math.floor(Math.random() * FRASES.length)];\n\nconst rawMetas = $input.all();\nconst results = [];\n\nfor (const item of rawMetas) {\n  const m = item.json;\n  if (!m || m.cedula === '0000000000' || m.cargo === 'TOTAL TIENDA') continue;\n\n  const nombreCompleto = `${m.nombres || ''} ${m.apellidos || ''}`.trim();\n  const primerNombre = (m.nombres || '').split(' ')[0] || 'Asesor';\n\n  let metaDiarias = {};\n  if (typeof m.metas_diarias === 'string') {\n    try { metaDiarias = JSON.parse(m.metas_diarias); } catch { metaDiarias = {}; }\n  } else if (m.metas_diarias) {\n    metaDiarias = m.metas_diarias;\n  }\n\n  const metaHoy = metaDiarias[currentDay] ?? metaDiarias[String(currentDay)] ?? m.meta_diaria ?? 0;\n  const metaMes = m.meta_mensual ?? 0;\n  const metaSemanal = m.meta_semanal ?? 0;\n\n  // Formato de Mensaje Telegram / WhatsApp\n  const mensaje = `🏃‍♂️ *PORTAL MARATHON - SHOPPING CARAPUNGO (MCP1)* 🏃‍♂️\\n` +\n    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n` +\n    `👋 ¡Hola *${primerNombre}*! (${m.cargo})\\n\\n` +\n    `🎯 *TU META DE HOY (Día ${currentDay})*: *$${Number(metaHoy).toLocaleString('en-US', { minimumFractionDigits: 2 })}*\\n` +\n    `📅 *Meta Período Activo*: *$${Number(metaSemanal).toLocaleString('en-US', { minimumFractionDigits: 2 })}*\\n` +\n    `⭐ *Meta Mensual Agosto*: *$${Number(metaMes).toLocaleString('en-US', { minimumFractionDigits: 2 })}*\\n` +\n    `🛍️ *Ticket Promedio Objetivo*: *$112.82* (Conversión Tienda: 72.47%)\\n\\n` +\n    `🔥 *ALIENTO DEL DÍA*:\\n` +\n    `_\"${randomQuote}\"_\\n\\n` +\n    `📲 *Revisa tu avance y turnos en vivo en el Portal:*\\n` +\n    `http://localhost:5174/metas\\n` +\n    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;\n\n  results.push({\n    json: {\n      cedula: m.cedula,\n      nombre: nombreCompleto,\n      primerNombre,\n      cargo: m.cargo,\n      metaHoy,\n      metaSemanal,\n      metaMes,\n      mensaje,\n      randomQuote\n    }\n  });\n}\n\nreturn results;"
+      },
+      "id": "format-advisors-message",
+      "name": "Formatear Mensajes Personalizados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 360]
+    },
+    {
+      "parameters": {
+        "chatId": "-1002345678901",
+        "text": "={{ $json.mensaje }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "telegram-notificacion",
+      "name": "Enviar a Telegram (Grupo / Asesores)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [940, 360],
+      "disabled": false
+    }
+  ],
+  "connections": {
+    "Disparo Diario 08:30 AM": {
+      "main": [
+        [
+          {
+            "node": "Consultar Metas Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Portal Marathon (Al Subir Metas)": {
+      "main": [
+        [
+          {
+            "node": "Consultar Metas Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consultar Metas Supabase": {
+      "main": [
+        [
+          {
+            "node": "Formatear Mensajes Personalizados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatear Mensajes Personalizados": {
+      "main": [
+        [
+          {
+            "node": "Enviar a Telegram (Grupo / Asesores)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

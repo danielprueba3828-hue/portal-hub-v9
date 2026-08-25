@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n_marathon_mcp1
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin_marathon
+      - N8N_BASIC_AUTH_PASSWORD=Marathon2026Secure!
+      - N8N_ENCRYPTION_KEY=n8vZjSQTmJ4tacCTh3AzbOHecyA=
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678/
+      # Base de Datos Postgres en Supabase
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_DATABASE=postgres
+      - DB_POSTGRESDB_HOST=db.aqknspjscmyvdabzgmwz.supabase.co
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_USER=postgres.aqknspjscmyvdabzgmwz
+      - DB_POSTGRESDB_PASSWORD=AbOLW3G3mrIysWdT
+      - DB_POSTGRESDB_SCHEMA=n8n
+      - DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

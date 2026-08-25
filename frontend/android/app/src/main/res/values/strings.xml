@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Portal Marathon MCP1</string>
+    <string name="title_activity_main">Portal Marathon MCP1</string>
+    <string name="package_name">ec.marathon.portal.mcp1</string>
+    <string name="custom_url_scheme">ec.marathon.portal.mcp1</string>
+</resources>
