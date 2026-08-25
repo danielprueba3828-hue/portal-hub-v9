@@ -40,7 +40,7 @@ export default function SolicitudesHorario({
     }
 
     const payload = {
-      empleado_cedula: isDirectivo && selectedCedula ? selectedCedula : currentUser?.user_metadata?.cedula,
+      empleado_cedula: isDirectivo && selectedCedula ? selectedCedula : (currentUser?.user_metadata?.cedula || currentUser?.cedula),
       tipo,
       fecha_inicio: fechaInicio,
       fecha_fin: fechaFin,
@@ -57,7 +57,7 @@ export default function SolicitudesHorario({
 
   const handleAction = async (id, estado) => {
     const comentario = adminComment[id] || (estado === 'Aprobado' ? 'Aprobado por jefatura' : 'Rechazado por operatividad');
-    await onProcesarSolicitud(id, estado, comentario, currentUser?.user_metadata?.cedula);
+    await onProcesarSolicitud(id, estado, comentario, currentUser?.user_metadata?.cedula || currentUser?.cedula);
   };
 
   return (

@@ -66,10 +66,10 @@ export default function HorarioPersonal({
   theme = 'oscuro'
 }) {
   const isLight = theme === 'clasico';
-  const cedula = currentUser?.user_metadata?.cedula;
-  const nombres = currentUser?.user_metadata?.nombres || 'Colaborador';
-  const cargo = currentUser?.user_metadata?.cargo || 'Asesor de Ventas';
-  const zona = currentUser?.user_metadata?.zona || 'Sin Zona';
+  const cedula = currentUser?.user_metadata?.cedula || currentUser?.cedula || '';
+  const nombres = currentUser?.user_metadata?.nombres || currentUser?.nombres || 'Colaborador';
+  const cargo = currentUser?.user_metadata?.cargo || currentUser?.cargo || 'Asesor de Ventas';
+  const zona = currentUser?.user_metadata?.zona || currentUser?.zona || 'Sin Zona';
 
   // Verificar si el usuario es de Jefatura / Directivo
   const isDirectivo = ['jefe', 'subjefe', 'tercer', 'supervisor', 'admin'].some(r => 
