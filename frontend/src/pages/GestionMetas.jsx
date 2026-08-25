@@ -297,8 +297,7 @@ export default function GestionMetas() {
           .from('coaching_asesores')
           .select('*')
           .eq('asesor_cedula', myCedula)
-          .order('created_at', { ascending: false })
-          .limit(1);
+          .order('created_at', { ascending: false });
 
         if (cData && cData.length > 0) {
           setMyLatestCoaching(cData[0]);

@@ -235,7 +235,7 @@ export default function Calendario() {
         )}
 
         {/* Tab 2: Mi Horario Personal */}
-        {activeTab === 'personal' && (
+        {(activeTab === 'personal' || !isDirectivo) && (
           <HorarioPersonal
             currentUser={currentUser}
             year={activeYear}
