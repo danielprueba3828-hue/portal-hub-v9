@@ -277,6 +277,8 @@ export default function GestionMetas() {
   };
 
   // Asesor actual conectado y cálculo de metas
+  const selectedDayManana = selectedDay + 1 > 31 ? 1 : selectedDay + 1;
+
   const {
     metaRecord: myMetaRecord,
     storeRecord: storeMetaRecord,
@@ -558,15 +560,15 @@ export default function GestionMetas() {
               }`}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-black uppercase tracking-wider text-amber-400">
-                    🌅 Meta Mañana (d25)
+                    🌅 Meta Mañana (d{selectedDayManana})
                   </span>
                   <div className="w-7 h-7 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center">
                     <Sparkles className="w-3.5 h-3.5" />
                   </div>
                 </div>
                 <div className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-amber-400">
-                  {(myMetaRecord?.metas_diarias?.[25] || 0) > 0 
-                    ? formatMoney(myMetaRecord.metas_diarias[25]) 
+                  {(myMetaRecord?.metas_diarias?.[selectedDayManana] || 0) > 0 
+                    ? formatMoney(myMetaRecord.metas_diarias[selectedDayManana]) 
                     : 'Libre / $0'}
                 </div>
                 <p className={`text-[11px] mt-1.5 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>

@@ -465,7 +465,7 @@ export function getCollaboratorMeta(allMetas = [], user = null, empleados = [], 
   const metaDiarias = parseDiarias(metaRec);
   const storeDiarias = parseDiarias(storeRec);
 
-  const dayKey = targetDay || 24;
+  const dayKey = targetDay || new Date().getDate();
   
   // Extraer meta del día específico o fallback a meta_diaria
   let miMetaHoy = 0;

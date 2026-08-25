@@ -132,8 +132,8 @@ export default function CoachingModal({
 
   if (!isOpen) return null;
 
-  const asesorActivo = asesores.find(a => a.cedula === selectedAsesorCedula) || asesores[0] || {};
-  const metaDiariaRef = asesorActivo?.metas_diarias?.[24] || asesorActivo?.meta_diaria || 0;
+  const todayDayNum = new Date().getDate();
+  const metaDiariaRef = asesorActivo?.metas_diarias?.[todayDayNum] || asesorActivo?.metas_diarias?.[String(todayDayNum)] || asesorActivo?.meta_diaria || 0;
   const metaMensualRef = asesorActivo?.meta_mensual || 0;
 
   const handleAddSugerenciaFortaleza = (sug) => {

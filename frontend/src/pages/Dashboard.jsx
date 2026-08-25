@@ -182,7 +182,23 @@ export default function Dashboard() {
   const [pendingBitacorasCount, setPendingBitacorasCount] = useState(0);
   const [pendingBodegaCount, setPendingBodegaCount] = useState(0);
 
-  const selectedDay = 24; // Día de hoy para la asignación de metas
+  const selectedDay = (() => {
+    try {
+      const dayPart = parseInt(todayDateStr.split('-')[2], 10);
+      return isNaN(dayPart) ? new Date().getDate() : dayPart;
+    } catch {
+      return new Date().getDate();
+    }
+  })();
+
+  const selectedDayManana = (() => {
+    try {
+      const dayPart = parseInt(tomorrowDateStr.split('-')[2], 10);
+      return isNaN(dayPart) ? new Date().getDate() + 1 : dayPart;
+    } catch {
+      return new Date().getDate() + 1;
+    }
+  })();
 
   const {
     metaRecord: myMetaRec,
@@ -534,15 +550,15 @@ export default function Dashboard() {
                 {/* Meta Hoy vs Meta Mañana */}
                 <div className="mt-3 grid grid-cols-2 gap-2 pb-1 border-b border-slate-800/40">
                   <div>
-                    <span className="text-[10px] uppercase font-black text-emerald-400 block">🎯 Hoy (d24)</span>
+                    <span className="text-[10px] uppercase font-black text-emerald-400 block">🎯 Hoy (D{selectedDay})</span>
                     <span className={`text-xl font-black font-mono block mt-0.5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>
                       ${tiendaMetaHoy.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                   <div className="border-l border-slate-800/40 pl-2.5">
-                    <span className="text-[10px] uppercase font-black text-amber-400 block">🌅 Mañana (d25)</span>
+                    <span className="text-[10px] uppercase font-black text-amber-400 block">🌅 Mañana (D{selectedDayManana})</span>
                     <span className={`text-xl font-black font-mono block mt-0.5 ${isLight ? 'text-amber-600' : 'text-amber-400'}`}>
-                      ${(storeMetaRec?.metas_diarias?.[25] || 7826).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                      ${(storeMetaRec?.metas_diarias?.[selectedDayManana] || 7826).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                 </div>
@@ -649,16 +665,16 @@ export default function Dashboard() {
                 {/* Meta Hoy vs Meta Mañana */}
                 <div className="mt-3 grid grid-cols-2 gap-2 pb-1 border-b border-slate-800/40">
                   <div>
-                    <span className="text-[10px] uppercase font-black text-emerald-400 block">🎯 Hoy (d24)</span>
+                    <span className="text-[10px] uppercase font-black text-emerald-400 block">🎯 Hoy (D{selectedDay})</span>
                     <span className={`text-xl font-black font-mono block mt-0.5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>
                       ${(miMetaHoy || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                   <div className="border-l border-slate-800/40 pl-2.5">
-                    <span className="text-[10px] uppercase font-black text-amber-400 block">🌅 Mañana (d25)</span>
+                    <span className="text-[10px] uppercase font-black text-amber-400 block">🌅 Mañana (D{selectedDayManana})</span>
                     <span className={`text-xl font-black font-mono block mt-0.5 ${isLight ? 'text-amber-600' : 'text-amber-400'}`}>
-                      ${(myMetaRec?.metas_diarias?.[25] || 0) > 0 
-                        ? Number(myMetaRec.metas_diarias[25]).toLocaleString('en-US', { minimumFractionDigits: 2 })
+                      ${(myMetaRec?.metas_diarias?.[selectedDayManana] || 0) > 0 
+                        ? Number(myMetaRec.metas_diarias[selectedDayManana]).toLocaleString('en-US', { minimumFractionDigits: 2 })
                         : 'Libre / $0'}
                     </span>
                   </div>
@@ -758,15 +774,15 @@ export default function Dashboard() {
                 {/* Meta Hoy vs Meta Mañana */}
                 <div className="mt-3 grid grid-cols-2 gap-2 pb-1 border-b border-slate-800/40">
                   <div>
-                    <span className="text-[10px] uppercase font-black text-emerald-400 block">🎯 Hoy (d24)</span>
+                    <span className="text-[10px] uppercase font-black text-emerald-400 block">🎯 Hoy (D{selectedDay})</span>
                     <span className={`text-xl font-black font-mono block mt-0.5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>
                       ${tiendaMetaHoy.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                   <div className="border-l border-slate-800/40 pl-2.5">
-                    <span className="text-[10px] uppercase font-black text-amber-400 block">🌅 Mañana (d25)</span>
+                    <span className="text-[10px] uppercase font-black text-amber-400 block">🌅 Mañana (D{selectedDayManana})</span>
                     <span className={`text-xl font-black font-mono block mt-0.5 ${isLight ? 'text-amber-600' : 'text-amber-400'}`}>
-                      ${(storeMetaRec?.metas_diarias?.[25] || 7826).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                      ${(storeMetaRec?.metas_diarias?.[selectedDayManana] || 7826).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                 </div>
