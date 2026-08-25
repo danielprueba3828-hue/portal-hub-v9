@@ -183,7 +183,7 @@ export function classifyShift(turno) {
  * 2. Al menos 1 Cajero activo durante horas de atención.
  * 3. Bodeguero operativo asignado.
  */
-export function auditStoreRoleRules(daysArray, employees, turnosMap) {
+export function auditStoreRoleRules(daysArray = [], employees = [], turnosMap = {}) {
   const roleViolations = [];
 
   daysArray.forEach(day => {
@@ -248,7 +248,7 @@ export function auditStoreRoleRules(daysArray, employees, turnosMap) {
 /**
  * ALGORITMO 2: Detector de Fatiga y Descansos Legales
  */
-export function auditEmployeeFatigue(employees, daysArray, turnosMap) {
+export function auditEmployeeFatigue(employees = [], daysArray = [], turnosMap = {}) {
   const alerts = [];
 
   employees.forEach(emp => {
@@ -304,7 +304,7 @@ export function auditEmployeeFatigue(employees, daysArray, turnosMap) {
 /**
  * ALGORITMO 3: Análisis de Cobertura Diaria
  */
-export function analyzeStaffingCoverage(daysArray, employees, turnosMap) {
+export function analyzeStaffingCoverage(daysArray = [], employees = [], turnosMap = {}) {
   return daysArray.map(day => {
     let countApertura = 0;
     let countIntermedio = 0;
@@ -357,7 +357,7 @@ export function analyzeStaffingCoverage(daysArray, employees, turnosMap) {
 /**
  * ALGORITMO 4: Índice de Equidad en Fines de Semana
  */
-export function calculateWeekendEquity(employees, daysArray, turnosMap) {
+export function calculateWeekendEquity(employees = [], daysArray = [], turnosMap = {}) {
   const weekendDays = daysArray.filter(d => d.isWeekend);
   const totalWeekends = weekendDays.length;
 
@@ -410,7 +410,7 @@ export function calculateWeekendEquity(employees, daysArray, turnosMap) {
  * Genera una propuesta de planificación mensual perfecta y balanceada para todo el equipo
  * respetando descansos legales, cobertura de líderes y equidad de fines de semana.
  */
-export function generateSmartSchedule(year, month, employees) {
+export function generateSmartSchedule(year, month, employees = []) {
   const days = getDaysInMonthArray(year, month);
   const generatedShifts = [];
 

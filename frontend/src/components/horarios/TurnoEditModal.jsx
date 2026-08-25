@@ -43,6 +43,19 @@ export default function TurnoEditModal({
     }
   }, [existingTurno, isOpen]);
 
+  // Bloquear el scroll de fondo — MUST be before any conditional return
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, [isOpen]);
+
   if (!isOpen || !employee) return null;
 
   const handleApplyPreset = (preset) => {
@@ -78,18 +91,6 @@ export default function TurnoEditModal({
     hora_inicio: horaInicio,
     hora_fin: horaFin
   });
-
-  // Bloquear el scroll de fondo
-  useEffect(() => {
-    const prevBodyOverflow = document.body.style.overflow;
-    const prevHtmlOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = prevBodyOverflow;
-      document.documentElement.style.overflow = prevHtmlOverflow;
-    };
-  }, []);
 
   const formatShortName = (n = '', a = '') => {
     const fn = (n || '').trim().split(/\s+/)[0] || '';

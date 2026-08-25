@@ -15,7 +15,7 @@ const MONTH_NAMES = [
 /**
  * Exporta la matriz de horarios del mes a PDF en formato apaisado (Landscape)
  */
-export function exportSchedulePDF(year, month, employees, turnosMap, storeName = 'Marathon Sports') {
+export function exportSchedulePDF(year, month, employees = [], turnosMap = {}, storeName = 'Marathon Sports') {
   const doc = new jsPDF({
     orientation: 'landscape',
     unit: 'mm',
@@ -99,7 +99,7 @@ export function exportSchedulePDF(year, month, employees, turnosMap, storeName =
 /**
  * Exporta la matriz a archivo Excel (.xlsx)
  */
-export function exportScheduleExcel(year, month, employees, turnosMap, storeName = 'Marathon Sports') {
+export function exportScheduleExcel(year, month, employees = [], turnosMap = {}, storeName = 'Marathon Sports') {
   const days = getDaysInMonthArray(year, month);
   const monthName = MONTH_NAMES[month - 1];
 

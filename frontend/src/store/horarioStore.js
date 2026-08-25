@@ -356,6 +356,11 @@ export const useHorarioStore = create((set, get) => ({
     }
   },
 
+  // Alias en español para retrocompatibilidad
+  procesarSolicitud: async (id, estado, comentarioAdmin, procesadoPorCedula) => {
+    return get().processSolicitud(id, estado, comentarioAdmin, procesadoPorCedula);
+  },
+
   addEmpleado: async (empleado) => {
     set({ saving: true, error: null });
     try {

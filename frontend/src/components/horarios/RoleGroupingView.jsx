@@ -202,7 +202,7 @@ export default function RoleGroupingView({
                 <h3 className={`font-title font-black text-xs sm:text-sm uppercase tracking-wider ${
                   isLight ? 'text-slate-800' : 'text-white'
                 }`}>
-                  {groupDef.title}
+                  {groupDef.label}
                 </h3>
                 <span className={`text-[9px] sm:text-[10px] font-black px-2 sm:px-2.5 py-0.5 rounded-full border ${badgeColor}`}>
                   {groupList.length} colaborad.
@@ -255,7 +255,7 @@ export default function RoleGroupingView({
                         Colaborador
                       </th>
                       {days.map(day => {
-                        const isWeekend = day.dayOfWeek === 'Sáb' || day.dayOfWeek === 'Dom';
+                        const isWeekend = day.isWeekend;
                         const isToday = day.dateStr === todayStr;
 
                         return (
@@ -269,7 +269,7 @@ export default function RoleGroupingView({
                                 : ''
                             }`}
                           >
-                            <span className="block text-[7px] sm:text-[8px] opacity-75">{day.dayOfWeek}</span>
+                            <span className="block text-[7px] sm:text-[8px] opacity-75">{day.dayNameShort}</span>
                             <span className="text-[11px] sm:text-xs font-bold">{day.dayNumber}</span>
                           </th>
                         );
@@ -327,7 +327,8 @@ export default function RoleGroupingView({
 
                           {/* Días del mes */}
                           {days.map(day => {
-                            const turno = turnosMap[`${emp.cedula}_${day.dateStr}`];
+                            const map = turnosMap || {};
+                            const turno = map[`${emp.cedula}_${day.dateStr}`];
                             const isToday = day.dateStr === todayStr;
 
                             if (turno) {
