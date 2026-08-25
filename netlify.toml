@@ -1,10 +1,12 @@
-[build]
+﻿[build]
   base = "frontend"
   command = "npm run build"
-  publish = "../dist"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
+  VITE_SUPABASE_URL = "https://aqknspjscmyvdabzgmwz.supabase.co"
+  VITE_SUPABASE_ANON_KEY = "sb_publishable_sXs0mE77V2HBU4ucEHvZXQ_I8qk9Oo0"
 
 [[redirects]]
   from = "/*"
@@ -18,7 +20,6 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Evitar caché en el index.html para que los iPhones siempre carguen la versión más reciente
 [[headers]]
   for = "/"
   [headers.values]
@@ -33,7 +34,6 @@
     Pragma = "no-cache"
     Expires = "0"
 
-# Caching agresivo para recursos estáticos con hash único (css, js, imágenes) para carga ultra-rápida
 [[headers]]
   for = "/assets/*"
   [headers.values]
