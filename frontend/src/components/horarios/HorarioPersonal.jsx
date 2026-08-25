@@ -61,7 +61,7 @@ export default function HorarioPersonal({
   currentUser,
   year,
   month,
-  turnosMap,
+  turnosMap = {},
   onRequestShiftChange,
   theme = 'oscuro'
 }) {
@@ -109,10 +109,11 @@ export default function HorarioPersonal({
   const allMonthDays = useMemo(() => getDaysInMonthArray(year, month), [year, month]);
 
   const getShift = useCallback((dateStr) => {
+    const map = turnosMap || {};
     const rawCed = String(cedula || '').trim();
     const paddedCed = (rawCed.length > 0 && rawCed.length < 10) ? rawCed.padStart(10, '0') : rawCed;
     const strippedCed = rawCed.replace(/^0+/, '');
-    return turnosMap[`${rawCed}_${dateStr}`] || turnosMap[`${paddedCed}_${dateStr}`] || turnosMap[`${strippedCed}_${dateStr}`];
+    return map[`${rawCed}_${dateStr}`] || map[`${paddedCed}_${dateStr}`] || (strippedCed ? map[`${strippedCed}_${dateStr}`] : null) || null;
   }, [cedula, turnosMap]);
 
   // Estadísticas del mes (para Jefatura)

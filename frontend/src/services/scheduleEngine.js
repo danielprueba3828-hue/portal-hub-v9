@@ -145,11 +145,12 @@ export function calculateShiftHours(turno) {
  * Clasifica el turno en Apertura, Intermedio, Cierre o Libre con colores dinámicos
  */
 export function classifyShift(turno) {
-  if (!turno) return { category: 'Descanso', badgeColor: 'slate', isOff: true, short: 'L', label: 'Descanso / Libre' };
+  if (!turno) return { category: 'Libre', badgeColor: 'slate', isOff: true, short: 'L', label: 'Descanso / Libre' };
   const tipo = String(turno.tipo_turno || '').trim().toUpperCase();
-  const start = turno.hora_inicio || '';
+  const start = String(turno.hora_inicio || '').trim();
+  const end = String(turno.hora_fin || '').trim();
 
-  if (tipo.includes('DESCANSO') || tipo.includes('LIBRE') || tipo === 'L') {
+  if (tipo.includes('DESCANSO') || tipo.includes('LIBRE') || tipo === 'L' || tipo === 'DESC' || start === '00:00' || start === '0:00' || end === '00:00' || end === '0:00') {
     return { category: 'Libre', badgeColor: 'slate', isOff: true, short: 'L', label: 'Descanso / Libre' };
   }
   if (tipo.includes('VACACION') || tipo === 'VAC') {
@@ -161,9 +162,11 @@ export function classifyShift(turno) {
 
   if (start) {
     const [h] = start.split(':').map(Number);
-    if (h < 11) return { category: 'Apertura', badgeColor: 'emerald', isOff: false, short: 'AP', label: `Apertura (${start})` };
-    if (h >= 11 && h < 13) return { category: 'Intermedio', badgeColor: 'amber', isOff: false, short: 'INT', label: `Intermedio (${start})` };
-    return { category: 'Cierre', badgeColor: 'blue', isOff: false, short: 'CIE', label: `Cierre (${start})` };
+    if (!isNaN(h)) {
+      if (h > 0 && h < 11) return { category: 'Apertura', badgeColor: 'emerald', isOff: false, short: 'AP', label: `Apertura (${start})` };
+      if (h >= 11 && h < 13) return { category: 'Intermedio', badgeColor: 'amber', isOff: false, short: 'INT', label: `Intermedio (${start})` };
+      if (h >= 13) return { category: 'Cierre', badgeColor: 'blue', isOff: false, short: 'CIE', label: `Cierre (${start})` };
+    }
   }
 
   if (tipo.includes('APERTURA') || tipo.startsWith('M')) return { category: 'Apertura', badgeColor: 'emerald', isOff: false, short: 'AP', label: 'Apertura' };

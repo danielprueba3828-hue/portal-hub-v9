@@ -43,9 +43,9 @@ export default function RoleGroupingView({
       ASESORES: []
     };
 
-    employees.forEach(emp => {
-      const g = getEmployeeRoleGroup(emp.cargo);
-      if (groups[g.key]) {
+    (employees || []).forEach(emp => {
+      const g = getEmployeeRoleGroup(emp?.cargo) || ROLE_DEFINITIONS.ASESORES;
+      if (g?.key && groups[g.key]) {
         groups[g.key].push(emp);
       } else {
         groups.ASESORES.push(emp);

@@ -778,7 +778,7 @@ export default function GestionMetas() {
                 </div>
                 <div className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-emerald-400">
                   {formatMoney(
-                    myMetaRecord?.periodos?.find(p => p.id === selectedPeriodId)?.meta_periodo ||
+                    (Array.isArray(myMetaRecord?.periodos) ? myMetaRecord.periodos : []).find(p => p.id === selectedPeriodId)?.meta_periodo ||
                     activeDays.reduce((acc, d) => acc + (myMetaRecord?.metas_diarias?.[d] || 0), 0)
                   )}
                 </div>
@@ -1117,7 +1117,7 @@ export default function GestionMetas() {
                 </span>
                 <span className="text-2xl font-black font-mono text-emerald-400">
                   {formatMoney(
-                    tiendaMeta?.periodos?.find(p => p.id === selectedPeriodId)?.meta_periodo ||
+                    (Array.isArray(tiendaMeta?.periodos) ? tiendaMeta.periodos : []).find(p => p.id === selectedPeriodId)?.meta_periodo ||
                     activeDays.reduce((acc, d) => acc + (tiendaMeta?.metas_diarias?.[d] || 0), 0)
                   )}
                 </span>
@@ -1276,7 +1276,7 @@ export default function GestionMetas() {
 
                         <td className="p-2 sm:p-3.5 text-right font-mono font-black text-emerald-400 border-r border-slate-800/40 text-xs sm:text-sm">
                           {formatMoney(
-                            tiendaMeta.periodos?.find(p => p.id === selectedPeriodId)?.meta_periodo ||
+                            (Array.isArray(tiendaMeta.periodos) ? tiendaMeta.periodos : []).find(p => p.id === selectedPeriodId)?.meta_periodo ||
                             activeDays.reduce((acc, d) => acc + (tiendaMeta.metas_diarias?.[d] || 0), 0)
                           )}
                         </td>
@@ -1300,7 +1300,7 @@ export default function GestionMetas() {
 
                     {/* Filas de Asesores */}
                     {filteredAdvisors.map(adv => {
-                      const periodMeta = adv.periodos?.find(p => p.id === selectedPeriodId)?.meta_periodo ||
+                      const periodMeta = (Array.isArray(adv.periodos) ? adv.periodos : []).find(p => p.id === selectedPeriodId)?.meta_periodo ||
                         activeDays.reduce((acc, d) => acc + (adv.metas_diarias?.[d] || 0), 0);
 
                       const friendlyName = formatAdvisorNameFriendly(adv.nombres, adv.apellidos, adv.cedula);
