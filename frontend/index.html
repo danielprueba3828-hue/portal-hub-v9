@@ -26,11 +26,18 @@
     <div id="root" style="background-color: #060b17 !important; min-height: 100vh;"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Desregistrar Service Workers antiguos para forzar la carga inmediata de la última versión en vivo
+      // Desregistrar Service Workers antiguos y limpiar caches obsoletas
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
           for (let registration of registrations) {
             registration.unregister();
+          }
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(keys => {
+          for (let key of keys) {
+            caches.delete(key);
           }
         });
       }
