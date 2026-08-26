@@ -260,18 +260,38 @@ export async function syncMetasToSupabase(parsedData, tiendaId = null) {
     });
   }
 
-  // 2. Registros de Asesores
+  const OFFICIAL_ADVISOR_CEDULAS = new Set([
+    '1753997376', // LUIS CARRION
+    '1310559917', // ANGEL VELASQUEZ
+    '1724158850', // LEONARDO POSLIGUA
+    '1755859038', // LAYLA MONTANO
+    '1729461796', // ELIANE HERRERA
+    '1727839142', // WILSON ARMIJOS
+    '0803422948', // PAOLA BRAVO
+    '0931982136', // KERLY ROSADO
+    '1750148155'  // MICHAEL GUEVARA
+  ]);
+
+  // 2. Registros de Asesores (Filtrar solo los 9 asesores oficiales activos)
   (asesores || []).forEach(a => {
+    const ced = String(a.cedula || '').trim().padStart(10, '0');
+    const cargoLower = (a.cargo || '').toLowerCase();
+    
+    // Omitir personal directivo/administración o inactivos de plantillas viejas
+    if (cargoLower.includes('jefe') || cargoLower.includes('gerente') || ced === '0803695311') {
+      return;
+    }
+
     const rawName = String(a.nombre_completo || '').trim();
     const parts = rawName.split(/\s+/);
     const apellidos = parts.slice(0, 2).join(' ') || parts[0] || 'Asesor';
     const nombres = parts.slice(2).join(' ') || parts.slice(1).join(' ') || rawName;
 
     recordsToUpsert.push({
-      cedula: String(a.cedula || '').trim(),
+      cedula: ced,
       nombres,
       apellidos,
-      cargo: a.cargo || 'Asesor de Ventas',
+      cargo: 'Asesor de Ventas',
       meta_diaria: a.meta_diaria || 0,
       meta_semanal: a.meta_semanal || 0,
       meta_mensual: a.meta_mensual || 0,
@@ -281,6 +301,13 @@ export async function syncMetasToSupabase(parsedData, tiendaId = null) {
       updated_at: new Date().toISOString()
     });
   });
+
+  // Limpiar posibles registros obsoletos en Supabase antes de upsertar
+  try {
+    await supabase.from('metas').delete().not('cedula', 'in', `(${Array.from(OFFICIAL_ADVISOR_CEDULAS).join(',')},0000000000)`);
+  } catch (cleanErr) {
+    console.warn('Nota limpieza de metas obsoletas:', cleanErr);
+  }
 
   // Upsert en tabla `metas` (con cédula como clave primaria)
   const { error } = await supabase

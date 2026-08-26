@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useThemeStore } from '../store/themeStore';
+import { useHorarioStore } from '../store/horarioStore';
 import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/layout/Navbar';
 import { parseMetasExcel, syncMetasToSupabase, PERIOD_COLORS, getCollaboratorMeta } from '../services/metasExcelParser';
@@ -49,22 +50,20 @@ function PdfModalCanvasContent({ pdfUrl, isLight, zoom = 100 }) {
     );
   }
 
-  const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
-
   return (
     <div className="flex flex-col items-center w-full space-y-4">
-      <div className="w-full relative rounded-2xl overflow-hidden border border-slate-800/50 bg-slate-950/60 min-h-[65vh] flex items-center justify-center">
+      <div className="w-full relative rounded-2xl overflow-hidden border border-slate-800/50 bg-slate-950/60 min-h-[70vh] flex items-center justify-center">
         {loading && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-sm z-10 space-y-3">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/80 backdrop-blur-sm z-10 space-y-3 pointer-events-none">
             <RefreshCw className="w-8 h-8 animate-spin text-rose-500" />
             <span className="text-xs font-black uppercase tracking-wider text-slate-300">Cargando reporte de metas PDF...</span>
           </div>
         )}
         <iframe
-          src={googleViewerUrl}
+          src={`${pdfUrl}#toolbar=1&view=FitH`}
           title="Reporte Oficial de Metas PDF"
           onLoad={() => setLoading(false)}
-          className="w-full h-full min-h-[65vh] rounded-2xl border-0 bg-white"
+          className="w-full h-full min-h-[70vh] rounded-2xl border-0 bg-white"
           allow="fullscreen"
         />
       </div>
@@ -288,6 +287,7 @@ function CoachingModal({
 export default function GestionMetas() {
   const { user } = useAuthStore();
   const { theme } = useThemeStore();
+  const { empleados, fetchEmpleados } = useHorarioStore();
   const isLight = theme === 'clasico';
 
   const myCedula = String(user?.user_metadata?.cedula || '').trim();
@@ -299,6 +299,12 @@ export default function GestionMetas() {
   const isDirectivo = ['jefe', 'subjefe', 'supervisor', 'admin'].some(r => 
     (myCargo || '').toLowerCase().includes(r)
   );
+
+  useEffect(() => {
+    if (!empleados || empleados.length === 0) {
+      fetchEmpleados('todos');
+    }
+  }, [empleados, fetchEmpleados]);
 
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -546,14 +552,21 @@ export default function GestionMetas() {
 
       // Disparar Notificación para todo el equipo en la campanita
       try {
-        await supabase.from('notificaciones').insert({
-          rol_destino: 'todos',
+        const targetCedulas = (empleados && empleados.length > 0)
+          ? empleados.map(e => e.cedula)
+          : allMetas.filter(m => m.cedula && m.cedula !== '0000000000').map(m => m.cedula);
+
+        const notifPayloads = targetCedulas.map(ced => ({
+          usuario_cedula: ced,
           tipo: 'avance_pdf',
           titulo: '📄 Nuevo PDF de Avances de Ventas',
           mensaje: `Jefatura ha publicado el reporte de avances: ${fileName}`,
-          ruta_destino: '/metas',
           leido: false
-        });
+        }));
+
+        if (notifPayloads.length > 0) {
+          await supabase.from('notificaciones').insert(notifPayloads);
+        }
       } catch (e) {
         console.warn("No se pudo registrar la notificación push:", e);
       }
@@ -1142,11 +1155,91 @@ export default function GestionMetas() {
                 </div>
               </div>
 
+              {/* Tarjetas de Resumen Dinámico del Período y Mes para el Asesor */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                
+                {/* Suma del Período Seleccionado */}
+                <div className={`p-4 rounded-2xl border flex items-center justify-between shadow-md ${
+                  isLight 
+                    ? 'bg-emerald-50/80 border-emerald-200 text-slate-900' 
+                    : 'bg-emerald-950/40 border-emerald-500/30 text-white'
+                }`}>
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 block">
+                      🎯 Meta Período {selectedPeriodId === 'all' ? '(1 - 31 Ago)' : `(${activePeriod?.nombre || ''})`}
+                    </span>
+                    <div className="text-xl sm:text-2xl font-black font-mono text-emerald-400 mt-1">
+                      {formatMoney(
+                        activeDays.reduce((acc, d) => acc + (myMetaRecord?.metas_diarias?.[d] || 0), 0)
+                      )}
+                    </div>
+                    <span className={`text-[10px] font-medium block mt-0.5 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
+                      {activeDays.filter(d => (myMetaRecord?.metas_diarias?.[d] || 0) > 0).length} días laborales en este período
+                    </span>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-emerald-500/15 text-emerald-400 shrink-0">
+                    <Calendar className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Suma Meta Mensual Total */}
+                <div className={`p-4 rounded-2xl border flex items-center justify-between shadow-md ${
+                  isLight 
+                    ? 'bg-purple-50/80 border-purple-200 text-slate-900' 
+                    : 'bg-purple-950/40 border-purple-500/30 text-white'
+                }`}>
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-purple-400 block">
+                      🏆 Meta Total del Mes (Agosto)
+                    </span>
+                    <div className="text-xl sm:text-2xl font-black font-mono text-purple-400 mt-1">
+                      {formatMoney(
+                        myMetaRecord?.meta_mensual || 
+                        Array.from({ length: 31 }, (_, i) => i + 1).reduce((acc, d) => acc + (myMetaRecord?.metas_diarias?.[d] || 0), 0)
+                      )}
+                    </div>
+                    <span className={`text-[10px] font-medium block mt-0.5 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
+                      Suma global de todos los períodos
+                    </span>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-purple-500/15 text-purple-400 shrink-0">
+                    <Target className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Promedio por Día Laboral */}
+                <div className={`p-4 rounded-2xl border flex items-center justify-between shadow-md ${
+                  isLight 
+                    ? 'bg-blue-50/80 border-blue-200 text-slate-900' 
+                    : 'bg-blue-950/40 border-blue-500/30 text-white'
+                }`}>
+                  <div>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-blue-400 block">
+                      📊 Promedio por Día Laboral
+                    </span>
+                    <div className="text-xl sm:text-2xl font-black font-mono text-blue-400 mt-1">
+                      {(() => {
+                        const workingDays = activeDays.filter(d => (myMetaRecord?.metas_diarias?.[d] || 0) > 0);
+                        const periodSum = activeDays.reduce((acc, d) => acc + (myMetaRecord?.metas_diarias?.[d] || 0), 0);
+                        return workingDays.length > 0 ? formatMoney(periodSum / workingDays.length) : '$0.00';
+                      })()}
+                    </div>
+                    <span className={`text-[10px] font-medium block mt-0.5 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
+                      Meta promedio en días de trabajo
+                    </span>
+                  </div>
+                  <div className="p-3 rounded-2xl bg-blue-500/15 text-blue-400 shrink-0">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                </div>
+
+              </div>
+
               {/* Grid de Días del Período Seleccionado */}
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
                 {activeDays.map(day => {
                   const dayMeta = myMetaRecord?.metas_diarias?.[day] || 0;
-                  const isDayToday = day === 24; // Hoy
+                  const isDayToday = day === initialTodayDay; // Hoy en Ecuador
 
                   return (
                     <div
@@ -1352,7 +1445,7 @@ export default function GestionMetas() {
                         <th 
                           key={d} 
                           className={`p-2 sm:p-2.5 font-mono text-center font-bold border-r border-slate-700/40 text-[10px] sm:text-xs min-w-[50px] ${
-                            d === 24 ? 'bg-blue-600/30 text-blue-300 font-black' : 'text-slate-300'
+                            d === initialTodayDay ? 'bg-blue-600/30 text-blue-300 font-black' : 'text-slate-300'
                           }`}
                         >
                           Día {d}
@@ -1399,7 +1492,7 @@ export default function GestionMetas() {
                           <td 
                             key={d} 
                             className={`p-2 sm:p-2.5 text-center font-mono font-bold border-r border-slate-800/30 text-[10px] sm:text-xs ${
-                              d === 24 ? 'text-emerald-300 bg-emerald-500/20' : 'text-emerald-400/90'
+                              d === initialTodayDay ? 'text-emerald-300 bg-emerald-500/20' : 'text-emerald-400/90'
                             }`}
                           >
                             {formatMoney(tiendaMeta.metas_diarias?.[d] || 0)}
@@ -1471,12 +1564,12 @@ export default function GestionMetas() {
                               <td 
                                 key={d} 
                                 className={`p-2 sm:p-2.5 text-center font-mono border-r border-slate-800/20 text-[10px] sm:text-xs ${
-                                  d === 24 ? (isLight ? 'bg-emerald-50' : 'bg-emerald-950/20') : ''
+                                  d === initialTodayDay ? (isLight ? 'bg-emerald-50' : 'bg-emerald-950/20') : ''
                                 }`}
                               >
                                 {val > 0 ? (
                                   <span className={`font-bold ${
-                                    d === 24 
+                                    d === initialTodayDay 
                                       ? 'text-emerald-400 font-extrabold' 
                                       : isLight ? 'text-slate-800' : 'text-slate-200'
                                   }`}>

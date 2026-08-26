@@ -49,7 +49,10 @@ export default function NotificationCenter() {
         .order('created_at', { ascending: false })
         .limit(40);
 
-      if (error) throw error;
+      if (error) {
+        setNotifications([]);
+        return;
+      }
 
       // Filtrar según el rol del usuario
       const filtered = (data || []).filter(n => {
@@ -64,7 +67,7 @@ export default function NotificationCenter() {
 
       setNotifications(filtered);
     } catch (err) {
-      console.error('Error cargando notificaciones:', err);
+      setNotifications([]);
     } finally {
       setLoading(false);
     }

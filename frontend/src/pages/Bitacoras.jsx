@@ -510,14 +510,21 @@ export default function Bitacoras() {
 
       if (error) throw error;
 
-      // Registrar notificación en el centro de avisos
-      await supabase.from('notificaciones').insert([{
-        rol_destino: 'jefes',
-        tipo: 'bitacora_jefe',
-        titulo: `📋 Nueva Bitácora de Jefatura (${colaboradorName})`,
-        mensaje: `Se ha registrado la bitácora de tienda para el turno del ${fechaReporte}.`,
-        ruta_destino: '/bitacoras?tab=historial_bitacoras'
-      }]);
+      // Registrar notificación en el centro de avisos para jefes
+      try {
+        const notifList = jefesRoster.map(j => ({
+          usuario_cedula: j.cedula,
+          tipo: 'bitacora_jefe',
+          titulo: `📋 Nueva Bitácora de Jefatura (${colaboradorName})`,
+          mensaje: `Se ha registrado la bitácora de tienda para el turno del ${fechaReporte}.`,
+          leido: false
+        }));
+        if (notifList.length > 0) {
+          await supabase.from('notificaciones').insert(notifList);
+        }
+      } catch (notifErr) {
+        console.warn('Aviso al insertar notificaciones de bitácora:', notifErr);
+      }
 
       // Disparar Webhook Automático hacia n8n
       sendN8nEvent('BITACORA_INCIDENCIA', {
@@ -579,13 +586,21 @@ export default function Bitacoras() {
       if (error) throw error;
 
       // Registrar notificación en el centro de avisos para bodega y jefes
-      await supabase.from('notificaciones').insert([{
-        rol_destino: 'bodega_y_jefes',
-        tipo: 'reporte_bodega',
-        titulo: `📦 Nuevo Reporte de Bodega (${myFullName})`,
-        mensaje: `Se han registrado las actividades y novedades de bodega para el ${formBodega.fecha}.`,
-        ruta_destino: '/bitacoras?tab=reportes_bodega'
-      }]);
+      try {
+        const targetTeam = [...bodeguerosRoster, ...jefesRoster];
+        const notifList = targetTeam.map(m => ({
+          usuario_cedula: m.cedula,
+          tipo: 'reporte_bodega',
+          titulo: `📦 Nuevo Reporte de Bodega (${myFullName})`,
+          mensaje: `Se han registrado las actividades y novedades de bodega para el ${formBodega.fecha}.`,
+          leido: false
+        }));
+        if (notifList.length > 0) {
+          await supabase.from('notificaciones').insert(notifList);
+        }
+      } catch (notifErr) {
+        console.warn('Aviso al insertar notificaciones de bodega:', notifErr);
+      }
 
       // Disparar Webhook Automático hacia n8n
       sendN8nEvent('BITACORA_INCIDENCIA', {
@@ -2152,10 +2167,15 @@ export default function Bitacoras() {
                                 </button>
                               )}
 
-                              <div className="text-[10px] font-bold text-slate-400 flex items-center gap-1">
-                                <Users className="w-3 h-3 text-cyan-400" />
-                                <span>{itemCheckins.length + 1}/{bodeguerosRoster.length || 3} Enterados</span>
-                              </div>
+                              <button
+                                onClick={() => setSelectedReporteBodega(rb)}
+                                className="px-3 py-1.5 rounded-xl border border-cyan-500/30 hover:bg-cyan-500/15 text-cyan-400 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+                                title="Ver quiénes marcaron check-in y detalle"
+                              >
+                                <Users className="w-3.5 h-3.5 text-cyan-400" />
+                                <span>{itemCheckins.length + 1} Enterados</span>
+                                <ChevronRight className="w-3.5 h-3.5" />
+                              </button>
                             </div>
                           </div>
                         );
@@ -2524,6 +2544,327 @@ export default function Bitacoras() {
             }`}>
               <button
                 onClick={() => setSelectedBitacora(null)}
+                className={`px-5 py-2 rounded-xl font-bold text-xs transition cursor-pointer ${
+                  isLight ? 'bg-slate-200 text-slate-800 hover:bg-slate-300' : 'bg-slate-800 text-white hover:bg-slate-700'
+                }`}
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DETALLE DE REPORTE DE BODEGA & CONTROL DE CHECK-IN */}
+      {selectedReporteBodega && (
+        <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in ${
+          isLight ? 'bg-slate-900/50' : 'bg-slate-950/85'
+        }`}>
+          <div className={`border rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] ${
+            isLight ? 'bg-white border-slate-200 text-slate-900' : 'bg-slate-900 border-slate-800 text-white'
+          }`}>
+            {/* Header */}
+            <div className={`p-6 border-b flex items-center justify-between ${
+              isLight ? 'bg-slate-50/80 border-slate-200' : 'bg-slate-950/80 border-slate-800'
+            }`}>
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-cyan-600 text-white shadow-md shadow-cyan-500/25">
+                  <Package className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className={`text-base font-bold ${isLight ? 'text-slate-900' : 'text-white'}`}>
+                    Reporte de Operación de Bodega
+                  </h3>
+                  <span className={`text-xs ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
+                    Fecha: {selectedReporteBodega.fecha} • {selectedReporteBodega.tipo_turno || 'Turno Completo'}
+                  </span>
+                </div>
+              </div>
+              <button 
+                onClick={() => setSelectedReporteBodega(null)}
+                className={`p-2 rounded-xl transition cursor-pointer ${
+                  isLight ? 'text-slate-500 hover:text-slate-900 hover:bg-slate-200' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Body */}
+            <div className="p-6 overflow-y-auto space-y-4 flex-1 text-xs">
+              
+              {/* Info Colaborador */}
+              <div className={`p-4 rounded-2xl border flex items-center justify-between ${
+                isLight ? 'bg-slate-50 border-slate-200' : 'bg-[#060b17] border-slate-800'
+              }`}>
+                <div>
+                  <span className="text-[10px] font-bold text-slate-400 block uppercase">Bodeguero / Operativo</span>
+                  <span className={`text-sm font-black ${isLight ? 'text-slate-900' : 'text-white'}`}>
+                    {selectedReporteBodega.colaborador}
+                  </span>
+                  <span className="text-xs text-cyan-400 font-bold block mt-0.5">Bodega Marathon MCP1</span>
+                </div>
+                <span className="px-3 py-1.5 rounded-xl bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 font-mono font-black text-xs uppercase">
+                  {selectedReporteBodega.tipo_turno || 'Turno Completo'}
+                </span>
+              </div>
+
+              {/* Actividades Realizadas */}
+              <div className={`p-4 rounded-2xl border space-y-2 ${
+                isLight ? 'bg-slate-50 border-slate-200' : 'bg-[#060b17] border-slate-800'
+              }`}>
+                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block">
+                  Actividades Realizadas:
+                </span>
+                <p className={`leading-relaxed whitespace-pre-line ${isLight ? 'text-slate-800' : 'text-slate-200'}`}>
+                  {selectedReporteBodega.actividades || 'Sin actividades registradas.'}
+                </p>
+              </div>
+
+              {/* Guías y Transferencias */}
+              {selectedReporteBodega.guias_descripcion && (
+                <div className={`p-4 rounded-2xl border space-y-2 ${
+                  isLight ? 'bg-slate-50 border-slate-200' : 'bg-[#060b17] border-slate-800'
+                }`}>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-cyan-400 block">
+                    Guías & Transferencias de Mercadería:
+                  </span>
+                  <p className="font-mono text-cyan-300">
+                    {selectedReporteBodega.guias_descripcion}
+                  </p>
+                </div>
+              )}
+
+              {/* Novedades / Pendientes */}
+              {selectedReporteBodega.novedades && (
+                <div className={`p-4 rounded-2xl border space-y-2 ${
+                  isLight ? 'bg-amber-50/50 border-amber-200' : 'bg-amber-950/20 border-amber-500/30'
+                }`}>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-400 block">
+                    Novedades / Pendientes para el Siguiente Turno:
+                  </span>
+                  <p className={`leading-relaxed ${isLight ? 'text-amber-900' : 'text-amber-200'}`}>
+                    {selectedReporteBodega.novedades}
+                  </p>
+                </div>
+              )}
+
+              {/* Evidencias de Bodega */}
+              {Array.isArray(selectedReporteBodega.evidencias) && selectedReporteBodega.evidencias.length > 0 && (
+                <div className={`p-4 rounded-2xl border space-y-3 ${
+                  isLight ? 'bg-slate-50 border-slate-200' : 'bg-[#060b17] border-slate-800'
+                }`}>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase block">
+                    Evidencias y Documentos Adjuntos ({selectedReporteBodega.evidencias.length}):
+                  </span>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {selectedReporteBodega.evidencias.map((ev, idx) => {
+                      const meta = getFileMetadata(ev);
+                      return meta.isImg ? (
+                        <div
+                          key={idx}
+                          onClick={() => setFullScreenImg(ev)}
+                          className="relative h-28 rounded-2xl overflow-hidden border border-slate-700/80 bg-black/40 group cursor-pointer"
+                        >
+                          <img 
+                            src={ev.url} 
+                            alt={ev.name} 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform" 
+                          />
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
+                            <span className="text-[10px] font-bold text-white bg-black/70 px-2 py-1 rounded-lg">
+                              🔍 Ver grande
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          key={idx}
+                          href={ev.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download={ev.name}
+                          className="p-3 rounded-2xl border border-slate-700/80 bg-slate-900/90 flex items-center gap-2 hover:border-cyan-500 transition"
+                        >
+                          <div className={`p-2 rounded-xl ${meta.bg} ${meta.color} shrink-0`}>
+                            <meta.Icon className="w-4 h-4" />
+                          </div>
+                          <div className="truncate min-w-0">
+                            <span className="text-[11px] font-bold text-white truncate block">{ev.name}</span>
+                            <span className={`text-[9px] font-bold ${meta.color}`}>{meta.label}</span>
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* ========================================================= */}
+              {/* SECCIÓN DE CHECK-IN Y AUDITORÍA: BODEGA Y JEFES */}
+              {/* ========================================================= */}
+              {(() => {
+                const creatorName = selectedReporteBodega.colaborador || 'Bodeguero';
+                const isCreator = creatorName.toLowerCase().includes(myNombreCompleto.toLowerCase()) ||
+                  myNombreCompleto.toLowerCase().includes(creatorName.toLowerCase());
+
+                const itemCheckins = checkins.filter(c => c.tipo === 'reporte_bodega' && String(c.referencia_id) === String(selectedReporteBodega.id));
+                const hasMyCheckin = itemCheckins.some(c => String(c.usuario_cedula) === myCedula);
+                const readCedulas = new Set(itemCheckins.map(c => String(c.usuario_cedula || '')));
+
+                // Lista de supervisores de bodega y jefatura que deberían revisar
+                const allTeamRoster = [...bodeguerosRoster, ...jefesRoster];
+                const pendingList = allTeamRoster.filter(emp => {
+                  const isCreatorEmp = emp.nombres.toLowerCase().includes(creatorName.toLowerCase()) ||
+                    creatorName.toLowerCase().includes(emp.nombres.toLowerCase());
+                  return !isCreatorEmp && !readCedulas.has(String(emp.cedula));
+                });
+
+                return (
+                  <div className={`p-4 rounded-2xl border space-y-3 ${
+                    isLight ? 'bg-slate-50/90 border-slate-200' : 'bg-[#060b17] border-slate-800'
+                  }`}>
+                    <div className="flex items-center justify-between gap-2 border-b pb-2.5 border-slate-800/40">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-cyan-400" />
+                        <span className="text-xs font-black uppercase tracking-wider">
+                          Control de Lectura y Check-in (Bodega & Jefes)
+                        </span>
+                      </div>
+
+                      {/* Estado del usuario activo */}
+                      {isCreator ? (
+                        <span className="flex items-center gap-1 text-[10px] font-black uppercase text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-xl border border-amber-500/30">
+                          <Crown className="w-3.5 h-3.5 text-amber-500" />
+                          <span>Creado por ti (Autor)</span>
+                        </span>
+                      ) : hasMyCheckin ? (
+                        <span className="flex items-center gap-1 text-[10px] font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-xl border border-emerald-500/30">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                          <span>Confirmado por ti</span>
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => handleCheckin('reporte_bodega', selectedReporteBodega.id, `Reporte Bodega ${selectedReporteBodega.fecha}`, creatorName)}
+                          disabled={actionInProgress}
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase bg-cyan-600 hover:bg-cyan-500 text-white shadow-md transition active:scale-95 cursor-pointer disabled:opacity-50"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>Confirmar Check-in</span>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Tabs: Enterados vs Faltan */}
+                    <div className={`p-1 rounded-xl border flex items-center gap-1 ${
+                      isLight ? 'bg-slate-200/60 border-slate-300' : 'bg-slate-900 border-slate-800'
+                    }`}>
+                      <button
+                        type="button"
+                        onClick={() => setModalCheckinTab('enterados')}
+                        className={`flex-1 py-1.5 rounded-lg text-[10px] font-black uppercase flex items-center justify-center gap-1.5 transition cursor-pointer ${
+                          modalCheckinTab === 'enterados'
+                            ? 'bg-cyan-600 text-white shadow-xs'
+                            : isLight ? 'text-slate-600 hover:text-slate-900' : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        <CheckCircle2 className="w-3 h-3" />
+                        <span>Enterados ({itemCheckins.length + 1})</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setModalCheckinTab('pendientes')}
+                        className={`flex-1 py-1.5 rounded-lg text-[10px] font-black uppercase flex items-center justify-center gap-1.5 transition cursor-pointer ${
+                          modalCheckinTab === 'pendientes'
+                            ? 'bg-amber-600 text-white shadow-xs'
+                            : isLight ? 'text-slate-600 hover:text-slate-900' : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        <Clock className="w-3 h-3" />
+                        <span>Faltan ({pendingList.length})</span>
+                      </button>
+                    </div>
+
+                    {/* Contenido: Enterados */}
+                    {modalCheckinTab === 'enterados' && (
+                      <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                        {/* Autor del reporte */}
+                        <div className={`p-2.5 rounded-xl border flex items-center justify-between text-xs ${
+                          isLight ? 'bg-amber-50 border-amber-200' : 'bg-amber-950/20 border-amber-500/30 text-amber-100'
+                        }`}>
+                          <div className="flex items-center gap-2 min-w-0">
+                            <Crown className="w-4 h-4 text-amber-500 shrink-0" />
+                            <div className="truncate">
+                              <span className="font-bold block truncate">{creatorName}</span>
+                              <span className="text-[9px] text-slate-400">Autor / Bodeguero Emisor</span>
+                            </div>
+                          </div>
+                          <span className="text-[9px] font-mono text-amber-400 font-bold px-2 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/20">
+                            Emitido
+                          </span>
+                        </div>
+
+                        {/* Compañeros y Jefes que ya hicieron check-in */}
+                        {itemCheckins.map((c, i) => (
+                          <div key={i} className={`p-2.5 rounded-xl border flex items-center justify-between text-xs ${
+                            isLight ? 'bg-white border-slate-200' : 'bg-slate-900/60 border-slate-800'
+                          }`}>
+                            <div className="flex items-center gap-2 min-w-0">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                              <div className="truncate">
+                                <span className="font-bold block truncate">{c.usuario_nombre}</span>
+                                <span className="text-[9px] text-cyan-400 font-semibold">{c.usuario_cargo || 'Bodeguero / Jefatura'}</span>
+                              </div>
+                            </div>
+                            <span className="text-[9px] font-mono text-emerald-400 font-bold">
+                              {new Date(c.created_at).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Contenido: Pendientes */}
+                    {modalCheckinTab === 'pendientes' && (
+                      <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                        {pendingList.length === 0 ? (
+                          <div className="py-3 text-center text-emerald-400 text-xs font-bold">
+                            🎉 ¡Todo el equipo de bodega y jefatura ha confirmado la lectura de este reporte!
+                          </div>
+                        ) : (
+                          pendingList.map((emp, i) => (
+                            <div key={i} className={`p-2.5 rounded-xl border flex items-center justify-between text-xs ${
+                              isLight ? 'bg-white border-slate-200' : 'bg-slate-900/60 border-slate-800 text-slate-300'
+                            }`}>
+                              <div className="flex items-center gap-2 min-w-0">
+                                <Clock className="w-4 h-4 text-amber-400 shrink-0" />
+                                <div className="truncate">
+                                  <span className="font-bold block truncate">{emp.nombres}</span>
+                                  <span className="text-[9px] text-slate-400">{emp.cargo}</span>
+                                </div>
+                              </div>
+                              <span className="text-[9px] text-amber-400 font-bold px-2 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/20">
+                                Sin revisar
+                              </span>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    )}
+
+                  </div>
+                );
+              })()}
+
+            </div>
+
+            {/* Footer */}
+            <div className={`p-4 border-t flex justify-end ${
+              isLight ? 'bg-slate-50 border-slate-200' : 'bg-slate-950/80 border-slate-800'
+            }`}>
+              <button
+                onClick={() => setSelectedReporteBodega(null)}
                 className={`px-5 py-2 rounded-xl font-bold text-xs transition cursor-pointer ${
                   isLight ? 'bg-slate-200 text-slate-800 hover:bg-slate-300' : 'bg-slate-800 text-white hover:bg-slate-700'
                 }`}
