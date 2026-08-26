@@ -364,17 +364,21 @@ export const useHorarioStore = create((set, get) => ({
   addEmpleado: async (empleado) => {
     set({ saving: true, error: null });
     try {
-      const selectedTiendaStr = sessionStorage.getItem('portal_selected_tienda');
       let defaultTiendaId = '7b1c4e92-3a8f-4d6e-9b2c-1f5e8d4a7c3b';
+      const selectedTiendaStr = sessionStorage.getItem('portal_selected_tienda');
       if (selectedTiendaStr) {
         defaultTiendaId = JSON.parse(selectedTiendaStr).id;
       }
 
+      const sanitized = { ...empleado };
+      if (sanitized.cumpleanos === '') sanitized.cumpleanos = null;
+      if (sanitized.fecha_ingreso === '') sanitized.fecha_ingreso = null;
+
       const { data, error } = await supabase
         .from('empleados')
         .insert({
-          tienda_id: empleado.tienda_id || defaultTiendaId,
-          ...empleado,
+          tienda_id: sanitized.tienda_id || defaultTiendaId,
+          ...sanitized,
           activo: true,
           debe_cambiar_password: false,
           intentos_fallidos: 0,
@@ -383,7 +387,7 @@ export const useHorarioStore = create((set, get) => ({
         .select();
 
       if (error) throw error;
-      await get().fetchEmpleados();
+      await get().fetchEmpleados('todos');
       set({ saving: false });
       return { success: true, data };
     } catch (err) {
@@ -395,14 +399,18 @@ export const useHorarioStore = create((set, get) => ({
   updateEmpleado: async (empleado) => {
     set({ saving: true, error: null });
     try {
+      const sanitized = { ...empleado };
+      if (sanitized.cumpleanos === '') sanitized.cumpleanos = null;
+      if (sanitized.fecha_ingreso === '') sanitized.fecha_ingreso = null;
+
       const { data, error } = await supabase
         .from('empleados')
-        .update(empleado)
-        .eq('cedula', empleado.cedula)
+        .update(sanitized)
+        .eq('cedula', sanitized.cedula)
         .select();
 
       if (error) throw error;
-      await get().fetchEmpleados();
+      await get().fetchEmpleados('todos');
       set({ saving: false });
       return { success: true, data };
     } catch (err) {
