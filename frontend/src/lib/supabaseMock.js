@@ -6110,6 +6110,25 @@ export const supabaseMock = {
         return builder;
       },
 
+      limit: (count) => {
+        if (typeof count === 'number' && count >= 0) {
+          queryData = queryData.slice(0, count);
+        }
+        return builder;
+      },
+
+      range: (from, to) => {
+        queryData = queryData.slice(from, to + 1);
+        return builder;
+      },
+
+      match: (obj) => {
+        Object.entries(obj || {}).forEach(([k, v]) => {
+          queryData = queryData.filter(row => String(row[k]) === String(v));
+        });
+        return builder;
+      },
+
       maybeSingle: () => {
         const result = queryData.length > 0 ? queryData[0] : null;
         return Promise.resolve({ data: result, error: null });
@@ -6122,8 +6141,8 @@ export const supabaseMock = {
         return Promise.resolve({ data: queryData[0], error: null });
       },
 
-      then: (onSuccess) => {
-        return Promise.resolve({ data: queryData, error: null }).then(onSuccess);
+      then: (onSuccess, onError) => {
+        return Promise.resolve({ data: queryData, error: null }).then(onSuccess, onError);
       }
     };
 

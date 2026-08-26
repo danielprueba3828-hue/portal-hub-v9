@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import { supabaseMock } from './supabaseMock';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://aqknspjscmyvdabzgmwz.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_sXs0mE77V2HBU4ucEHvZXQ_I8qk9Oo0';
 
 // Comprobar si hay credenciales válidas y no de marcador
 const isRealSupabaseConfigured = 

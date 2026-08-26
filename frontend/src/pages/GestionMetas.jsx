@@ -600,24 +600,29 @@ export default function GestionMetas() {
   const formatAdvisorNameFriendly = (nombres = '', apellidos = '', cedula = '') => {
     const cleanCed = String(cedula || '').trim();
     const CEDULA_NAME_MAP = {
-      '1714768486': 'Wilson Armijos',
-      '1727839142': 'Paola Bravo',
-      '0803422948': 'Luis Carrión',
-      '1753997376': 'Eliane Herrera',
-      '1729461796': 'Layla Montaño',
-      '1755859038': 'José Posligua',
-      '1724158850': 'Julexi Robinzon',
-      '0803695311': 'Kerly Rosado',
-      '0931982136': 'Ángel Velásquez',
-      '1310559917': 'Michael Guevara',
-      '1750148155': 'Génesis Chiscuet',
-      '1726057274': 'Alain Cruz',
-      '1726880014': 'José Valenzuela',
-      '1727654321': 'Shania Felix',
-      '1729876543': 'Samantha Vera',
-      '1721234567': 'Antony Gaona',
-      '1723456789': 'José Luna',
-      '1725678901': 'Santiago Morocho'
+      '1310559917': 'Ángel Velásquez',
+      '1729153807': 'José Daniel Luna',
+      '1150688420': 'Antony Gaona',
+      '1725290454': 'Samantha Vera',
+      '1755859038': 'Layla Montaño',
+      '1753456738': 'Alain Cruz',
+      '0931982136': 'Kerly Rosado',
+      '931982136': 'Kerly Rosado',
+      '1727839142': 'Wilson Armijos',
+      '1724158850': 'José Leonardo Posligua',
+      '1714768486': 'José Gustavo Valenzuela',
+      '1753544103': 'Génesis Chiscuet',
+      '1712323359': 'Segundo Ramiro Tenorio',
+      '1753997376': 'Luis René Carrión',
+      '1726862194': 'Shania Felix',
+      '1729461796': 'Eliane Herrera',
+      '0803422948': 'Paola Bravo',
+      '803422948': 'Paola Bravo',
+      '1752334951': 'Santiago Morocho',
+      '1761707502': 'Santiago Morocho',
+      '1750148155': 'Michael Guevara',
+      '0803695311': 'Julexi Robinzon',
+      '803695311': 'Julexi Robinzon'
     };
 
     if (cleanCed && CEDULA_NAME_MAP[cleanCed]) {
