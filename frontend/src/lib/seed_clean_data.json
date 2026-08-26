@@ -1,0 +1,4794 @@
+{
+  "empleados": [
+    {
+      "id": "e-1",
+      "cedula": "1310559917",
+      "nombres": "ANGEL CASIMIRO",
+      "apellidos": "VELASQUEZ DELGADO",
+      "cargo": "Asesor de Ventas",
+      "zona": "CATEGORIZACION",
+      "email": "ismaelvalencia481@gmail.com",
+      "telefono": "0969057406",
+      "cumpleanos": "2026-01-28",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1310559917"
+    },
+    {
+      "id": "e-2",
+      "cedula": "1729153807",
+      "nombres": "JOSE DANIEL",
+      "apellidos": "LUNA ENRIQUEZ",
+      "cargo": "Bodeguero",
+      "zona": "BODEGA",
+      "email": "dl198349@gmail.com",
+      "telefono": "0978764148",
+      "cumpleanos": "2026-07-28",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1729153807"
+    },
+    {
+      "id": "e-3",
+      "cedula": "1150688420",
+      "nombres": "ANTONY STIVEN",
+      "apellidos": "GAONA JIMENEZ",
+      "cargo": "Bodeguero",
+      "zona": "BODEGA",
+      "email": "gaonaantoni2@gmail.com",
+      "telefono": "0991765242",
+      "cumpleanos": "2026-12-28",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1150688420"
+    },
+    {
+      "id": "e-4",
+      "cedula": "1725290454",
+      "nombres": "SAMANTHA DENISSE",
+      "apellidos": "VERA MORA",
+      "cargo": "Cajera",
+      "zona": "CAJA",
+      "email": "verasammy27@gmail.com",
+      "telefono": "0992777043",
+      "cumpleanos": "2026-08-30",
+      "rol": "empleado",
+      "genero": "Mujer",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1725290454"
+    },
+    {
+      "id": "e-5",
+      "cedula": "1755859038",
+      "nombres": "LAYLA VALENTINA",
+      "apellidos": "MONTANO HURTADO",
+      "cargo": "Asesora de Ventas",
+      "zona": "ZONA HOMBRE",
+      "email": "laylamontanomab@gmail.com",
+      "telefono": "0998952209",
+      "cumpleanos": "2026-05-28",
+      "rol": "empleado",
+      "genero": "Mujer",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1755859038"
+    },
+    {
+      "id": "e-6",
+      "cedula": "1753456738",
+      "nombres": "ALAIN",
+      "apellidos": "CRUZ CEVALLOS",
+      "cargo": "Subjefe de Tienda",
+      "zona": "ADMINISTRACION",
+      "email": "cruzalain640@gmail.com",
+      "telefono": "0991218319",
+      "cumpleanos": "2026-12-30",
+      "rol": "supervisor",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1753456738"
+    },
+    {
+      "id": "e-7",
+      "cedula": "0931982136",
+      "nombres": "KERLY MELISA",
+      "apellidos": "ROSADO SANCHEZ",
+      "cargo": "Asesora de Ventas",
+      "zona": "ROTATIVO",
+      "email": "rosadomelisa@gmail.com",
+      "telefono": "0960012405",
+      "cumpleanos": "2026-01-19",
+      "rol": "empleado",
+      "genero": "Mujer",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "0931982136"
+    },
+    {
+      "id": "e-8",
+      "cedula": "1727839142",
+      "nombres": "WILSON OMAR",
+      "apellidos": "ARMIJOS MORETA",
+      "cargo": "Asesor de Ventas",
+      "zona": "ZONA MUJER",
+      "email": "omar_wjr@hotmail.com",
+      "telefono": "0939902571",
+      "cumpleanos": "2026-08-28",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1727839142"
+    },
+    {
+      "id": "e-9",
+      "cedula": "1724158850",
+      "nombres": "JOSE LEONARDO",
+      "apellidos": "POSLIGUA MOLINA",
+      "cargo": "Asesor de Ventas",
+      "zona": "CATEGORIZACION",
+      "email": "leonardoposligua@hotmail.com",
+      "telefono": "0998456195",
+      "cumpleanos": "2026-12-01",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1724158850"
+    },
+    {
+      "id": "e-10",
+      "cedula": "1714768486",
+      "nombres": "JOSE GUSTAVO",
+      "apellidos": "VALENZUELA TARAPUES",
+      "cargo": "Jefe de Tienda",
+      "zona": "ADMINISTRACION",
+      "email": "gvalenzuela1977.gv@gmail.com",
+      "telefono": "0981336694",
+      "cumpleanos": "2026-08-01",
+      "rol": "admin",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1714768486"
+    },
+    {
+      "id": "e-11",
+      "cedula": "1753544103",
+      "nombres": "GENESIS DARLYN",
+      "apellidos": "CHISCUET JIMENEZ",
+      "cargo": "Tercer a Bordo",
+      "zona": "CAJA",
+      "email": "genechiscuet@gmail.com",
+      "telefono": "099455935",
+      "cumpleanos": "2026-03-01",
+      "rol": "tercer_a_bordo",
+      "genero": "Mujer",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1753544103"
+    },
+    {
+      "id": "e-12",
+      "cedula": "1712323359",
+      "nombres": "SEGUNDO RAMIRO",
+      "apellidos": "TENORIO TOAPANTA",
+      "cargo": "Operativo",
+      "zona": "ROTATIVO",
+      "email": "ramiroteorio2009@hotmail.com",
+      "telefono": "0989272970",
+      "cumpleanos": "2026-01-25",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1712323359"
+    },
+    {
+      "id": "e-13",
+      "cedula": "1753997376",
+      "nombres": "LUIS RENE",
+      "apellidos": "CARRION CAJAMARCA",
+      "cargo": "Asesor de Ventas",
+      "zona": "CATEGORIZACION",
+      "email": "luiscarrion079@gmail.com",
+      "telefono": "0987480148",
+      "cumpleanos": "2026-03-09",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1753997376"
+    },
+    {
+      "id": "e-14",
+      "cedula": "1726862194",
+      "nombres": "SHANIA FIORELLA",
+      "apellidos": "FELIX VILLEGAS",
+      "cargo": "Cajera",
+      "zona": "CAJA",
+      "email": "shania.fiorella@gmail.com",
+      "telefono": "0961145627",
+      "cumpleanos": "2026-02-01",
+      "rol": "empleado",
+      "genero": "Mujer",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1726862194"
+    },
+    {
+      "id": "e-15",
+      "cedula": "1729461796",
+      "nombres": "ELIANE FERNANDO",
+      "apellidos": "HERRERA CORREA",
+      "cargo": "Asesor de Ventas",
+      "zona": "CATEGORIZACION",
+      "email": "elianneherrera184@gmail.com",
+      "telefono": "0983111606",
+      "cumpleanos": "2026-05-02",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1729461796"
+    },
+    {
+      "id": "e-16",
+      "cedula": "0803422948",
+      "nombres": "PAOLA ESTEFANIE",
+      "apellidos": "BRAVO FARIAS",
+      "cargo": "Asesora de Ventas",
+      "zona": "ZONA MUJER",
+      "email": "bravofariaspaolaestefania@hotmail.com",
+      "telefono": "0959591066",
+      "cumpleanos": "2026-04-24",
+      "rol": "empleado",
+      "genero": "Mujer",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "0803422948"
+    },
+    {
+      "id": "e-17",
+      "cedula": "1752334951",
+      "nombres": "SANTIAGO DAVID",
+      "apellidos": "MOROCHO CEBALLOS",
+      "cargo": "Bodeguero",
+      "zona": "BODEGA",
+      "email": "santyldu600@gmail.com",
+      "telefono": "0963136397",
+      "cumpleanos": "2026-07-12",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1752334951"
+    },
+    {
+      "id": "e-18",
+      "cedula": "1750148155",
+      "nombres": "MICHAEL JOSUE",
+      "apellidos": "GUEVARA OBANDO",
+      "cargo": "Asesor de Ventas",
+      "zona": "ROTATIVO",
+      "email": "guevaramichael18g@gmail.com",
+      "telefono": "0980670071",
+      "cumpleanos": "2004-09-18",
+      "rol": "empleado",
+      "genero": "Hombre",
+      "activo": true,
+      "debe_cambiar_password": false,
+      "intentos_fallidos": 0,
+      "bloqueado": false,
+      "password_hash": "1750148155"
+    }
+  ],
+  "turnos": [
+    {
+      "id": "t-1753997376-1",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-2",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-3",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-4",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-5",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-6",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-7",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-8",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-9",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-10",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-11",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-12",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-13",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-14",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-15",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-16",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-17",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-18",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-19",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-20",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-21",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-22",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-23",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-24",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-25",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-26",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753997376-27",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-28",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-29",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-30",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753997376-31",
+      "empleado_cedula": "1753997376",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-1",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-2",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-3",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-4",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-5",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-6",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-7",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-8",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-9",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-10",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-11",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-12",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-13",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-14",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-15",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-16",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-17",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-18",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-19",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-20",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-21",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-22",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-23",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-24",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-25",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-26",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-27",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-28",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1310559917-29",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-30",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1310559917-31",
+      "empleado_cedula": "1310559917",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-1",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-2",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-3",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-4",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-5",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-6",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-7",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-8",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-9",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-10",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-11",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-12",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-13",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-14",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-15",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-16",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-17",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-18",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-19",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-20",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-21",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-22",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-23",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-24",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1724158850-25",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-26",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-27",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-28",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-29",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-30",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1724158850-31",
+      "empleado_cedula": "1724158850",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-1",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-2",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-3",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-4",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-5",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-6",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-7",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-8",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-9",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-10",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-11",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-12",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-13",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-14",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-15",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-16",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-17",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-18",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-19",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-20",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-21",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-22",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-23",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-24",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-25",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-26",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1755859038-27",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-28",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-29",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-30",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1755859038-31",
+      "empleado_cedula": "1755859038",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-1",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-2",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-3",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-4",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-5",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-6",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-7",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-8",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-9",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-10",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-11",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-12",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-13",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-14",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-15",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-16",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-17",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-18",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-19",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-20",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-21",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-22",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-23",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-24",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-25",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-26",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-27",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-28",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-29",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729461796-30",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729461796-31",
+      "empleado_cedula": "1729461796",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-1",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-2",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-3",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-4",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-5",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-6",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-7",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-8",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-9",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-10",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-11",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-12",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-13",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-14",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-15",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-16",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-17",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-18",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-19",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-20",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-21",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-22",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-23",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-24",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-25",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-26",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1727839142-27",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-28",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-29",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-30",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1727839142-31",
+      "empleado_cedula": "1727839142",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-1",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-2",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-3",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-4",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-5",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-6",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-7",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-8",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-9",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-10",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-11",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-12",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-13",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-14",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-15",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-16",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-17",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-18",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-19",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-20",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-21",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-22",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-23",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-24",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-25",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-26",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-27",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-28",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0803422948-29",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-30",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0803422948-31",
+      "empleado_cedula": "0803422948",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-1",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-2",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-3",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-4",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-5",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-6",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-7",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-8",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-9",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-10",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-11",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-12",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-13",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-14",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-15",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-16",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-17",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-18",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-19",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-20",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-21",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-22",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-23",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-24",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-25",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-26",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-27",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-28",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-29",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-0931982136-30",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-0931982136-31",
+      "empleado_cedula": "0931982136",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1750148155-1",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-2",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-3",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-4",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-5",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-6",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-7",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-8",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-9",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-10",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-11",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-12",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-13",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-14",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-15",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-16",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-17",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-18",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-19",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-20",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-21",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-22",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-23",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-24",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-25",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1750148155-26",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1750148155-27",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1750148155-28",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1750148155-29",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1750148155-30",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1750148155-31",
+      "empleado_cedula": "1750148155",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-1",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-2",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-3",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-4",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-5",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-6",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-7",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-8",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-9",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-10",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-11",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-12",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-13",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-14",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-15",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-16",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-17",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-18",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-19",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-20",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-21",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-22",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1714768486-23",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-24",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-25",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-26",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-27",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-28",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-29",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-30",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1714768486-31",
+      "empleado_cedula": "1714768486",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-1",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-2",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-3",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-4",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-5",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-6",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-7",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-8",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-9",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-10",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-11",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-12",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-13",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-14",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-15",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-16",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-17",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-18",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-19",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-20",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-21",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-22",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-23",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-24",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-25",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-26",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-27",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-28",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-29",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753456738-30",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753456738-31",
+      "empleado_cedula": "1753456738",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-1",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-2",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-3",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-4",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-5",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-6",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-7",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-8",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-9",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-10",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-11",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-12",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-13",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-14",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-15",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-16",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-17",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-18",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-19",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-20",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-21",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-22",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-23",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-24",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-25",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-26",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-27",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1150688420-28",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-29",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-30",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1150688420-31",
+      "empleado_cedula": "1150688420",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-1",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-2",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-3",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-4",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-5",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-6",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-7",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-8",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-9",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-10",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-11",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-12",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-13",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-14",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-15",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-16",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-17",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-18",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-19",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-20",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-21",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-22",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-23",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-24",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-25",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-26",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-27",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1729153807-28",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-29",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-30",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1729153807-31",
+      "empleado_cedula": "1729153807",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-1",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-2",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-3",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-4",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-5",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-6",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-7",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-8",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-9",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-10",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-11",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-12",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-13",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-14",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-15",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-16",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-17",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-18",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-19",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-20",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-21",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-22",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-23",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-24",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-25",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1752334951-26",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-27",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-28",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-29",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-30",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1752334951-31",
+      "empleado_cedula": "1752334951",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-1",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-2",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-3",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-4",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-5",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-6",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-7",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-8",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-9",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-10",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-11",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-12",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-13",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-14",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-15",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-16",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-17",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-18",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-19",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-20",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-21",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-22",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-23",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-24",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-25",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-26",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-27",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-28",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1712323359-29",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-30",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1712323359-31",
+      "empleado_cedula": "1712323359",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-1",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-2",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-3",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-4",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-5",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-6",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-7",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-8",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-9",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-10",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-11",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-12",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-13",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-14",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-15",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-16",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-17",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-18",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-19",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-20",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-21",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-22",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-23",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-24",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-25",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-26",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-27",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-28",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-29",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1725290454-30",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1725290454-31",
+      "empleado_cedula": "1725290454",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-1",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-2",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-3",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-4",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-5",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-6",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-7",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-8",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-9",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-10",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-11",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-12",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-13",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-14",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-15",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-16",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-17",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-18",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-19",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-20",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-21",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-22",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-23",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-24",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-25",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-26",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-27",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1726862194-28",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-29",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-30",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1726862194-31",
+      "empleado_cedula": "1726862194",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-1",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-01",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-2",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-02",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-3",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-03",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-4",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-04",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-5",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-05",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-6",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-06",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-7",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-07",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-8",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-08",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-9",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-09",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-10",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-10",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-11",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-11",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-12",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-12",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-13",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-13",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-14",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-14",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-15",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-15",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-16",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-16",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-17",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-17",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-18",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-18",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-19",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-19",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-20",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-20",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-21",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-21",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-22",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-22",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-23",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-23",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-24",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-24",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-25",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-25",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    },
+    {
+      "id": "t-1753544103-26",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-26",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-27",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-27",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-28",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-28",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-29",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-29",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-30",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-30",
+      "tipo_turno": "Mañana",
+      "hora_inicio": "09:30",
+      "hora_fin": "18:30"
+    },
+    {
+      "id": "t-1753544103-31",
+      "empleado_cedula": "1753544103",
+      "fecha": "2026-08-31",
+      "tipo_turno": "Descanso",
+      "hora_inicio": "00:00",
+      "hora_fin": "00:00"
+    }
+  ]
+}

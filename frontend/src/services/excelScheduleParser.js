@@ -55,8 +55,15 @@ export function formatExcelTime(val) {
 export function matchEmployee(cedulaVal, nameVal, employeesList) {
   if (!employeesList || employeesList.length === 0) return null;
 
+  let cleanCedula = normalizeCedula(cedulaVal);
+  const cleanName = normalizeString(nameVal);
+
+  // Mapeo canónico: Santiago Morocho reemplaza cualquier mención de la cédula 1761707502 o nombre Santiago
+  if (cleanCedula === '1761707502' || cleanName.includes('SANTIAGO')) {
+    cleanCedula = '1752334951';
+  }
+
   // 1. Coincidencia por Cédula
-  const cleanCedula = normalizeCedula(cedulaVal);
   if (cleanCedula && cleanCedula.length >= 9) {
     const byCedula = employeesList.find(e => normalizeCedula(e.cedula) === cleanCedula);
     if (byCedula) return byCedula;
@@ -64,7 +71,6 @@ export function matchEmployee(cedulaVal, nameVal, employeesList) {
 
   // 2. Coincidencia por Nombre
   if (!nameVal) return null;
-  const cleanName = normalizeString(nameVal);
 
   // Exacto
   const byExactName = employeesList.find(e => {
