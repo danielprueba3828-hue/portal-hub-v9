@@ -280,17 +280,44 @@ export default function Personal() {
 
   // Métricas rápidas de nómina
   const totalActivos = empleados.filter(e => e.activo).length;
-  const totalAsesores = empleados.filter(e => e.activo && (e.cargo || '').includes('Asesor')).length;
-  const totalBodega = empleados.filter(e => e.activo && (e.cargo || '').includes('Bodeg')).length;
-  const totalLideresCaja = empleados.filter(e => e.activo && ((e.cargo || '').includes('Jefe') || (e.cargo || '').includes('Tercer') || (e.cargo || '').includes('Cajer'))).length;
+  const totalAsesores = empleados.filter(e => e.activo && ((e.cargo || '').toLowerCase().includes('asesor') || (e.cargo || '').toLowerCase().includes('ventas'))).length;
+  const totalBodega = empleados.filter(e => e.activo && (e.cargo || '').toLowerCase().includes('bodeg')).length;
+  const totalLideresCaja = empleados.filter(e => e.activo && (
+    (e.cargo || '').toLowerCase().includes('jefe') || 
+    (e.cargo || '').toLowerCase().includes('tercer') || 
+    (e.cargo || '').toLowerCase().includes('cajer') || 
+    (e.cargo || '').toLowerCase().includes('operat')
+  )).length;
 
-  // Filtrado de colaboradores
+  // Filtrado flexible e inteligente de colaboradores
   const filteredEmpleados = empleados.filter(emp => {
     const fullName = `${emp.nombres || ''} ${emp.apellidos || ''}`.toLowerCase();
     const cedula = String(emp.cedula || '');
     const matchesSearch = !searchTerm || fullName.includes(searchTerm.toLowerCase()) || cedula.includes(searchTerm);
-    const matchesCargo = filterCargo === 'Todos' || emp.cargo === filterCargo;
-    const matchesZona = filterZona === 'Todos' || (emp.zona || 'CATEGORIZACION') === filterZona;
+
+    // Matching de cargo con tolerancia a variaciones de género y nombres compuestos
+    const matchesCargo = (() => {
+      if (filterCargo === 'Todos') return true;
+      const c = (emp.cargo || '').toLowerCase().trim();
+      const filter = filterCargo.toLowerCase().trim();
+      if (filter.includes('jefe') && !filter.includes('subjefe')) return c.includes('jefe') && !c.includes('subjefe');
+      if (filter.includes('subjefe') || filter.includes('sub jefe')) return c.includes('subjefe') || c.includes('sub jefe');
+      if (filter.includes('tercer')) return c.includes('tercer');
+      if (filter.includes('cajer')) return c.includes('cajer');
+      if (filter.includes('bodeg')) return c.includes('bodeg');
+      if (filter.includes('asesor')) return c.includes('asesor') || c.includes('ventas');
+      if (filter.includes('operat')) return c.includes('operat');
+      return c === filter;
+    })();
+
+    // Matching de zona
+    const matchesZona = (() => {
+      if (filterZona === 'Todos') return true;
+      const z = (emp.zona || 'CATEGORIZACION').toUpperCase().trim();
+      const fz = filterZona.toUpperCase().trim();
+      return z.includes(fz) || fz.includes(z);
+    })();
+
     const matchesEstado = 
       filterEstado === 'Todos' || 
       (filterEstado === 'Activos' && emp.activo) || 
@@ -553,17 +580,17 @@ export default function Personal() {
               className={`px-3 py-2 rounded-xl border text-xs font-bold outline-none cursor-pointer transition ${
                 isLight 
                   ? 'bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-800' 
-                  : 'bg-slate-950/60 hover:bg-slate-900 border-slate-700 text-white'
+                  : 'bg-slate-900 hover:bg-slate-800 border-slate-700 text-white'
               }`}
             >
-              <option value="Todos">Todos los Cargos</option>
-              <option value="Jefe de Tienda">👔 Jefe de Tienda</option>
-              <option value="Subjefe de Tienda">⭐ Subjefe de Tienda</option>
-              <option value="Tercero a bordo">🎖️ Tercero a bordo</option>
-              <option value="Cajero">💰 Cajero</option>
-              <option value="Bodeguero">📦 Bodeguero</option>
-              <option value="Asesor de Ventas">👟 Asesor de Ventas</option>
-              <option value="Asistente Operativo">⚙️ Operativo</option>
+              <option value="Todos" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>Todos los Cargos</option>
+              <option value="Jefe" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>👔 Jefe de Tienda</option>
+              <option value="Subjefe" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>⭐ Subjefe de Tienda</option>
+              <option value="Tercer" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>🎖️ Tercero a bordo</option>
+              <option value="Cajer" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>💰 Cajero / Cajera</option>
+              <option value="Bodeg" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>📦 Bodeguero</option>
+              <option value="Asesor" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>👟 Asesor / Asesora</option>
+              <option value="Operat" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>⚙️ Operativo</option>
             </select>
 
             {/* Filtro Zona */}
@@ -573,16 +600,17 @@ export default function Personal() {
               className={`px-3 py-2 rounded-xl border text-xs font-bold outline-none cursor-pointer transition ${
                 isLight 
                   ? 'bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-800' 
-                  : 'bg-slate-950/60 hover:bg-slate-900 border-slate-700 text-white'
+                  : 'bg-slate-900 hover:bg-slate-800 border-slate-700 text-white'
               }`}
             >
-              <option value="Todos">Todas las Zonas</option>
-              <option value="CATEGORIZACION">CATEGORIZACIÓN</option>
-              <option value="ZONA HOMBRE">ZONA HOMBRE</option>
-              <option value="ZONA MUJER">ZONA MUJER</option>
-              <option value="BODEGA">BODEGA</option>
-              <option value="CAJA">CAJA</option>
-              <option value="JEFATURA">JEFATURA</option>
+              <option value="Todos" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>Todas las Zonas</option>
+              <option value="CATEGORIZACION" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>🏷️ CATEGORIZACIÓN</option>
+              <option value="ZONA HOMBRE" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>👕 ZONA HOMBRE</option>
+              <option value="ZONA MUJER" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>👗 ZONA MUJER</option>
+              <option value="ROTATIVO" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>🔄 ROTATIVO</option>
+              <option value="BODEGA" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>📦 BODEGA</option>
+              <option value="CAJA" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>💰 CAJA</option>
+              <option value="ADMINISTRACION" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>👑 ADMINISTRACIÓN</option>
             </select>
 
             {/* Filtro Estado */}
@@ -592,12 +620,12 @@ export default function Personal() {
               className={`px-3 py-2 rounded-xl border text-xs font-bold outline-none cursor-pointer transition ${
                 isLight 
                   ? 'bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-800' 
-                  : 'bg-slate-950/60 hover:bg-slate-900 border-slate-700 text-white'
+                  : 'bg-slate-900 hover:bg-slate-800 border-slate-700 text-white'
               }`}
             >
-              <option value="Activos">Solo Activos</option>
-              <option value="Inactivos">Bajas</option>
-              <option value="Todos">Todos</option>
+              <option value="Activos" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>Solo Activos</option>
+              <option value="Inactivos" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>Bajas</option>
+              <option value="Todos" className={isLight ? 'bg-white text-slate-900' : 'bg-slate-900 text-white'}>Todos</option>
             </select>
           </div>
         </div>

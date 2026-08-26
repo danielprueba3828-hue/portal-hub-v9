@@ -10,10 +10,8 @@ import HorariosHeader from '../components/horarios/HorariosHeader';
 import MatrizHorarios from '../components/horarios/MatrizHorarios';
 import HorarioPersonal from '../components/horarios/HorarioPersonal';
 import AnaliticaHorarios from '../components/horarios/AnaliticaHorarios';
-import SolicitudesHorario from '../components/horarios/SolicitudesHorario';
 import CargaHorariosModal from '../components/horarios/CargaHorariosModal';
 import TurnoEditModal from '../components/horarios/TurnoEditModal';
-import FloatingShiftPainter from '../components/horarios/FloatingShiftPainter';
 
 // Servicios de exportación y algoritmos
 import { generateSmartSchedule } from '../services/scheduleEngine';
@@ -258,18 +256,6 @@ export default function Calendario() {
             year={activeYear}
             month={activeMonth}
             turnosMap={turnosMap}
-            theme={theme}
-          />
-        )}
-
-        {/* Floating Shift Painter for Directivos */}
-        {activeTab === 'matriz' && isDirectivo && (
-          <FloatingShiftPainter
-            activePaintShift={activePaintShift}
-            onSelectPaintShift={setActivePaintShift}
-            isDirectivo={isDirectivo}
-            onRunAutoSchedule={handleRunAutoSchedule}
-            saving={saving}
             theme={theme}
           />
         )}
