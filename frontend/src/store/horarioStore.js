@@ -170,12 +170,32 @@ export const useHorarioStore = create((set, get) => ({
     return get().saveTurnosMasivos(turnosArray);
   },
 
-  saveTurnosMasivos: async (turnosArray, targetYear = null, targetMonth = null, zonesDetected = null) => {
+  saveTurnosMasivos: async (turnosArray, targetYear = null, targetMonth = null, zonesDetected = null, weeklyZonesDetected = null, newEmployeesDetected = null) => {
     set({ saving: true, error: null });
     try {
       if (!turnosArray || turnosArray.length === 0) {
         set({ saving: false });
         return { success: true, count: 0 };
+      }
+
+      // 0. Si hay colaboradores nuevos detectados en el Excel, agregarlos a la base de datos
+      if (newEmployeesDetected && newEmployeesDetected.length > 0) {
+        for (const newEmp of newEmployeesDetected) {
+          const { error: insErr } = await supabase
+            .from('empleados')
+            .upsert({
+              cedula: newEmp.cedula,
+              nombres: newEmp.nombres,
+              apellidos: newEmp.apellidos || '',
+              cargo: newEmp.cargo || 'Asesor de Ventas',
+              zona: newEmp.zona || 'CATEGORIZACION',
+              rol: 'empleado',
+              activo: true,
+              password_hash: newEmp.cedula,
+              tienda_id: '7b1c4e92-3a8f-4d6e-9b2c-1f5e8d4a7c3b'
+            }, { onConflict: 'cedula' });
+          if (insErr) console.warn('Aviso insertando nuevo empleado:', insErr);
+        }
       }
 
       // 1. Limpiar campos que no estén en la base de datos de turnos
@@ -202,9 +222,13 @@ export const useHorarioStore = create((set, get) => ({
       // 3. Sincronizar zonas de empleados si se detectaron en el archivo
       if (zonesDetected && Object.keys(zonesDetected).length > 0) {
         for (const [cedula, zona] of Object.entries(zonesDetected)) {
+          const updatePayload = { zona };
+          if (weeklyZonesDetected && weeklyZonesDetected[cedula]) {
+            updatePayload.zonas_semanales = weeklyZonesDetected[cedula];
+          }
           await supabase
             .from('empleados')
-            .update({ zona })
+            .update(updatePayload)
             .eq('cedula', cedula);
         }
         await get().fetchEmpleados('todos');
