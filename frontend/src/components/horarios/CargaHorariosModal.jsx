@@ -96,7 +96,9 @@ export default function CargaHorariosModal({
       parseResult.turnos, 
       parseResult.year, 
       parseResult.month,
-      parseResult.zonesDetected
+      parseResult.zonesDetected,
+      parseResult.weeklyZonesDetected,
+      parseResult.newEmployeesDetected
     );
     if (success) {
       onClose();
