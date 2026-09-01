@@ -76,8 +76,25 @@ export default function HorarioPersonal({
     (cargo || '').toLowerCase().includes(r)
   );
 
+  // Base de fecha para la vista:
+  // Si el mes/año coincide con la fecha actual, anclamos a hoy.
+  // Si se selecciona otro mes (ej. Septiembre mientras estamos en Agosto), anclamos al día 1 del mes seleccionado.
+  const baseDateForView = useMemo(() => {
+    const today = new Date();
+    const isCurrentMonth = today.getFullYear() === Number(year) && (today.getMonth() + 1) === Number(month);
+    if (isCurrentMonth) {
+      return today;
+    }
+    return new Date(Number(year), Number(month) - 1, 1);
+  }, [year, month]);
+
   // Offset de semana para navegación (-1: anterior, 0: actual, 1: siguiente)
   const [weekOffset, setWeekOffset] = useState(0);
+
+  // Resetear semana al cambiar de mes o año seleccionado
+  React.useEffect(() => {
+    setWeekOffset(0);
+  }, [year, month]);
   
   // Para Jefatura: opción de alternar entre vista mensual y semanal si lo desean
   const [jefaturaViewMode, setJefaturaViewMode] = useState('mensual');
@@ -102,15 +119,25 @@ export default function HorarioPersonal({
 
   // Días de la semana seleccionada
   const weekDays = useMemo(() => {
-    return getDaysForWeek(todayDate, weekOffset);
-  }, [todayDate, weekOffset]);
+    return getDaysForWeek(baseDateForView, weekOffset);
+  }, [baseDateForView, weekOffset]);
+
+  // Determinar número de semana del mes visible (Semana 1..5)
+  const currentWeekNumber = useMemo(() => {
+    const firstDay = weekDays[0]?.date || new Date();
+    const day = firstDay.getDate();
+    return Math.min(Math.ceil(day / 7), 5);
+  }, [weekDays]);
+
+  const userWeeklyZones = currentUser?.user_metadata?.zonas_semanales || currentUser?.zonas_semanales || {};
+  const currentWeekZone = userWeeklyZones[String(currentWeekNumber)] || zona;
 
   // Días de todo el mes (para Jefatura)
   const allMonthDays = useMemo(() => getDaysInMonthArray(year, month), [year, month]);
 
   const getShift = useCallback((dateStr) => {
     const map = turnosMap || {};
-    const rawCed = String(cedula || '').trim();
+    const rawCed = String(cedula || '').trim().replace(/[\s.-]/g, '');
     const paddedCed = (rawCed.length > 0 && rawCed.length < 10) ? rawCed.padStart(10, '0') : rawCed;
     const strippedCed = rawCed.replace(/^0+/, '');
     return map[`${rawCed}_${dateStr}`] || map[`${paddedCed}_${dateStr}`] || (strippedCed ? map[`${strippedCed}_${dateStr}`] : null) || null;
@@ -316,9 +343,17 @@ export default function HorarioPersonal({
                 <CalendarIcon className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-black tracking-tight">
-                  Horario de la Semana Actual
-                </h3>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="text-lg font-black tracking-tight">
+                    Semana {currentWeekNumber}
+                  </h3>
+                  {currentWeekZone && currentWeekZone !== 'Sin Zona' && (
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-amber-400" />
+                      <span>{currentWeekZone}</span>
+                    </span>
+                  )}
+                </div>
                 <span className={`text-xs font-bold ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>
                   {startWeekLabel} — {endWeekLabel}
                 </span>
