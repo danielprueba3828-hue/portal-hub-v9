@@ -307,7 +307,7 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
             hora_inicio: '00:00',
             hora_fin: '00:00',
             horas_programadas: 0,
-            creado_por: 'importador_excel'
+            creado_por: '1714768486'
           };
 
           const entryTime = formatExcelTime(entryRaw);
@@ -316,10 +316,9 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
           if (entryTime && exitTime && entryTime !== '00:00' && exitTime !== '00:00') {
             const h = parseInt(entryTime.split(':')[0], 10);
             let tipo = 'Intermedio';
-            if (h < 11) tipo = 'Apertura (M1)';
-            else if (h >= 11 && h < 12) tipo = 'Intermedio (I1)';
-            else if (h >= 12 && h < 13) tipo = 'Intermedio (I2)';
-            else tipo = 'Cierre (T1)';
+            if (h < 11) tipo = 'Apertura';
+            else if (h >= 11 && h < 13) tipo = 'Intermedio';
+            else tipo = 'Cierre';
 
             turnoObj.tipo_turno = tipo;
             turnoObj.hora_inicio = entryTime;
@@ -422,7 +421,7 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
         hora_inicio: '00:00',
         hora_fin: '00:00',
         horas_programadas: 0,
-        creado_por: 'importador_excel'
+        creado_por: '1714768486'
       };
 
       if (hasMultipleRows) {
@@ -432,10 +431,9 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
         if (entryTime && exitTime && entryTime !== '00:00' && exitTime !== '00:00') {
           const h = parseInt(entryTime.split(':')[0], 10);
           let tipo = 'Intermedio';
-          if (h < 11) tipo = 'Apertura (M1)';
-          else if (h >= 11 && h < 12) tipo = 'Intermedio (I1)';
-          else if (h >= 12 && h < 13) tipo = 'Intermedio (I2)';
-          else tipo = 'Cierre (T1)';
+          if (h < 11) tipo = 'Apertura';
+          else if (h >= 11 && h < 13) tipo = 'Intermedio';
+          else tipo = 'Cierre';
 
           turnoObj.tipo_turno = tipo;
           turnoObj.hora_inicio = entryTime;
