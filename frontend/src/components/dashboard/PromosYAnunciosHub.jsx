@@ -50,6 +50,30 @@ const getDisplayName = (nombres = '', apellidos = '') => {
   return cleanN || cleanA;
 };
 
+const getRemainingTime12h = (createdAt) => {
+  if (!createdAt) return { isExpired: false, text: '12h restantes', hoursLeft: 12, urgent: false };
+  const createdTime = new Date(createdAt).getTime();
+  if (isNaN(createdTime)) return { isExpired: false, text: '12h restantes', hoursLeft: 12, urgent: false };
+  
+  const limitTime = createdTime + (12 * 60 * 60 * 1000); // 12 horas
+  const now = Date.now();
+  const diffMs = limitTime - now;
+
+  if (diffMs <= 0) {
+    return { isExpired: true, text: 'Tiempo agotado (>12h)', hoursLeft: 0, urgent: true };
+  }
+
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+  return {
+    isExpired: false,
+    text: hours > 0 ? `${hours}h ${minutes}m restantes` : `${minutes}m restantes`,
+    hoursLeft: hours,
+    urgent: hours < 3
+  };
+};
+
 export default function PromosYAnunciosHub({ isDirectivo, isLight, user }) {
   const [activeTab, setActiveTab] = useState('promos'); // 'promos' | 'anuncios'
   const [promos, setPromos] = useState([]);
@@ -419,8 +443,35 @@ export default function PromosYAnunciosHub({ isDirectivo, isLight, user }) {
                         </p>
                       </div>
 
-                      {/* Sección de Check-in y Visto */}
+                      {/* Sección de Check-in y Visto con Límite de 12 Horas */}
                       <div className="mt-3.5 pt-3 border-t border-slate-800/40 space-y-2">
+                        {/* Temporizador de 12h */}
+                        {(() => {
+                          const timeInfo = getRemainingTime12h(p.created_at);
+                          return (
+                            <div className="flex items-center justify-between text-[10px]">
+                              <span className={`flex items-center gap-1 font-bold ${
+                                hasMyCheckin 
+                                  ? 'text-emerald-400' 
+                                  : timeInfo.isExpired 
+                                    ? 'text-rose-400 font-black' 
+                                    : timeInfo.urgent 
+                                      ? 'text-amber-400 font-black animate-pulse' 
+                                      : isLight ? 'text-slate-500' : 'text-slate-400'
+                              }`}>
+                                <Clock className="w-3 h-3" />
+                                <span>
+                                  {hasMyCheckin 
+                                    ? 'Completado dentro del plazo' 
+                                    : timeInfo.isExpired 
+                                      ? '⚠️ Límite de 12h vencido' 
+                                      : `⏳ Límite: ${timeInfo.text}`}
+                                </span>
+                              </span>
+                            </div>
+                          );
+                        })()}
+
                         <div className="flex items-center justify-between">
                           {hasMyCheckin ? (
                             <span className="flex items-center gap-1 text-[10px] font-black uppercase text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-lg border border-emerald-500/30">
@@ -445,7 +496,7 @@ export default function PromosYAnunciosHub({ isDirectivo, isLight, user }) {
                               onClick={() => setShowReadersModal({ 
                                 title: `Visto en: ${p.titulo}`, 
                                 list: itemCheckins,
-                                itemData: { tipo: 'promo', id: p.id, titulo: p.titulo }
+                                itemData: { tipo: 'promo', id: p.id, titulo: p.titulo, createdAt: p.created_at }
                               })}
                               className={`px-3 py-1.5 rounded-xl text-[11px] font-black tracking-tight flex items-center gap-1.5 border transition-all active:scale-95 cursor-pointer shadow-xs ${
                                 isLight
@@ -558,8 +609,35 @@ export default function PromosYAnunciosHub({ isDirectivo, isLight, user }) {
                       </p>
                     </div>
 
-                    {/* Sección de Check-in y Visto */}
+                    {/* Sección de Check-in y Visto con Límite de 12 Horas */}
                     <div className="mt-4 pt-3 border-t border-slate-800/40 space-y-2">
+                      {/* Temporizador de 12h */}
+                      {(() => {
+                        const timeInfo = getRemainingTime12h(a.created_at);
+                        return (
+                          <div className="flex items-center justify-between text-[10px]">
+                            <span className={`flex items-center gap-1 font-bold ${
+                              hasMyCheckin 
+                                ? 'text-emerald-400' 
+                                : timeInfo.isExpired 
+                                  ? 'text-rose-400 font-black' 
+                                  : timeInfo.urgent 
+                                    ? 'text-amber-400 font-black animate-pulse' 
+                                    : isLight ? 'text-slate-500' : 'text-slate-400'
+                            }`}>
+                              <Clock className="w-3 h-3" />
+                              <span>
+                                {hasMyCheckin 
+                                  ? 'Lectura confirmada a tiempo' 
+                                  : timeInfo.isExpired 
+                                    ? '⚠️ Límite de 12h vencido' 
+                                    : `⏳ Límite de lectura: ${timeInfo.text}`}
+                              </span>
+                            </span>
+                          </div>
+                        );
+                      })()}
+
                       <div className="flex items-center justify-between">
                         {hasMyCheckin ? (
                           <span className="flex items-center gap-1 text-[10px] font-black uppercase text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-lg border border-emerald-500/30">
@@ -584,7 +662,7 @@ export default function PromosYAnunciosHub({ isDirectivo, isLight, user }) {
                             onClick={() => setShowReadersModal({ 
                               title: `Lecturas: ${a.titulo}`, 
                               list: itemCheckins,
-                              itemData: { tipo: 'anuncio', id: a.id, titulo: a.titulo }
+                              itemData: { tipo: 'anuncio', id: a.id, titulo: a.titulo, createdAt: a.created_at }
                             })}
                             className={`px-3 py-1.5 rounded-xl text-[11px] font-black tracking-tight flex items-center gap-1.5 border transition-all active:scale-95 cursor-pointer shadow-xs ${
                               isLight
@@ -1115,10 +1193,19 @@ export default function PromosYAnunciosHub({ isDirectivo, isLight, user }) {
                             </div>
                           </div>
 
-                          <span className="text-[9px] text-amber-400 font-bold flex items-center gap-1 shrink-0 ml-2 px-2 py-0.5 rounded-lg bg-amber-500/10 border border-amber-500/30">
-                            <Clock className="w-3 h-3 text-amber-400" />
-                            Sin leer
-                          </span>
+                          {(() => {
+                            const timeInfo = getRemainingTime12h(showReadersModal.itemData?.createdAt);
+                            return (
+                              <span className={`text-[9px] font-bold flex items-center gap-1 shrink-0 ml-2 px-2 py-0.5 rounded-lg border ${
+                                timeInfo.isExpired 
+                                  ? 'bg-rose-500/15 text-rose-400 border-rose-500/30 font-black' 
+                                  : 'bg-amber-500/10 text-amber-400 border-amber-500/30'
+                              }`}>
+                                <Clock className="w-3 h-3" />
+                                {timeInfo.isExpired ? '12h Vencido' : 'Pendiente'}
+                              </span>
+                            );
+                          })()}
                         </div>
                       );
                     })
