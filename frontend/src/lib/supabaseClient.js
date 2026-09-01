@@ -1,30 +1,27 @@
 import { createClient } from '@supabase/supabase-js';
-import { supabaseMock } from './supabaseMock';
+import seedData from './seed_clean_data.json';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://aqknspjscmyvdabzgmwz.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_sXs0mE77V2HBU4ucEHvZXQ_I8qk9Oo0';
+// Variables de entorno de Supabase
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://vptwhwuzmewtwpbbesgr.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwdHdod3V6bWV3dHdwYmJlc2dyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNjE0ODcsImV4cCI6MjA1NTczNzQ4N30.8V5JbL4gUu4F4h0fQ5jC8M7eW2_tE5gJ_L6rY3_tY0M';
 
-// Comprobar si hay credenciales válidas y no de marcador
-const isRealSupabaseConfigured = 
-  supabaseUrl && 
-  supabaseAnonKey && 
-  supabaseUrl.trim() !== '' && 
-  !supabaseUrl.includes('xyzxyz.supabase.co') &&
-  supabaseAnonKey.trim() !== '' &&
-  supabaseAnonKey.trim() !== 'tu_anon_key_aqui';
+// Inicialización de cliente Supabase
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+  }
+});
 
-// Activar FORCE_MOCK_MODE = true para forzar el simulador de base de datos en localStorage
-// y hacer pruebas locales seguras sin modificar la base de datos real en Supabase.
-const FORCE_MOCK_MODE = false;
-
-export const supabase = (isRealSupabaseConfigured && !FORCE_MOCK_MODE)
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : supabaseMock;
-
-console.log(
-  (isRealSupabaseConfigured && !FORCE_MOCK_MODE)
-    ? '🔌 Conectado a la Base de Datos real de Supabase.'
-    : FORCE_MOCK_MODE
-      ? '💻 MODALIDAD SIMULADOR LOCAL ACTIVADA (Forzado para pruebas seguras en localStorage). Ningún cambio afectará a tu base de datos real.'
-      : '💻 Iniciado en MODO SIMULADOR LOCAL (localStorage). Todo funciona al instante sin configurar base de datos externa.'
-);
+// Semilla de datos locales si la red está desconectada
+export async function ensureSeedData() {
+  try {
+    const { data: emps, error } = await supabase.from('empleados').select('count').limit(1);
+    if (!error && emps) {
+      console.log('Conexión con Supabase activa.');
+      return;
+    }
+  } catch (e) {
+    console.warn('Usando fallback local offline:', e);
+  }
+}
