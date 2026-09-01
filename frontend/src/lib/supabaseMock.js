@@ -64,16 +64,17 @@ const initDb = () => {
       return;
     }
 
-    // Purgar empleados obsoletos (Brayan, Pablo, etc.)
+    // Purgar empleados obsoletos o sincronizar cuando cambie el seed de turnos/empleados
     const hasObsolete = db.empleados.some(e => !OFFICIAL_CEDULAS.has(e.cedula));
     const santiagoTurnosOld = db.turnos.some(t => t.empleado_cedula === "1761707502");
+    const turnosCountDiffers = db.turnos.length !== SEED_DATA.turnos.length;
 
-    if (hasObsolete || santiagoTurnosOld || db.empleados.length !== SEED_DATA.empleados.length) {
+    if (hasObsolete || santiagoTurnosOld || db.empleados.length !== SEED_DATA.empleados.length || turnosCountDiffers) {
       db.empleados = SEED_DATA.empleados;
       db.turnos = SEED_DATA.turnos;
       db.metas = SEED_DATA.metas;
       localStorage.setItem('marathon_db', JSON.stringify(db));
-      console.log("marathon_db: Base local purgada y sincronizada con los 18 colaboradores oficiales.");
+      console.log("marathon_db: Base local purgada y sincronizada con los datos oficiales.");
     }
   } catch (e) {
     localStorage.setItem('marathon_db', JSON.stringify(SEED_DATA));
