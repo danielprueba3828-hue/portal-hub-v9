@@ -9,6 +9,13 @@
 -- Columnas Generales Adicionales
 ALTER TABLE public.empleados ADD COLUMN IF NOT EXISTS cargo_anterior varchar(50);
 ALTER TABLE public.empleados ADD COLUMN IF NOT EXISTS zona varchar(50);
+ALTER TABLE public.empleados ADD COLUMN IF NOT EXISTS zonas_semanales jsonb DEFAULT '{}'::jsonb;
+ALTER TABLE public.empleados ALTER COLUMN email DROP NOT NULL;
+
+-- Optimización y ampliación de columnas en turnos
+ALTER TABLE public.turnos ALTER COLUMN tipo_turno TYPE varchar(50);
+ALTER TABLE public.turnos ALTER COLUMN creado_por TYPE varchar(50);
+ALTER TABLE public.turnos DROP CONSTRAINT IF EXISTS turnos_tipo_turno_check;
 ALTER TABLE public.reportes_bodega ADD COLUMN IF NOT EXISTS comentarios_jefes jsonb default '[]'::jsonb;
 ALTER TABLE public.bitacoras_jefes ADD COLUMN IF NOT EXISTS colaborador varchar(150);
 ALTER TABLE public.bitacoras_jefes ADD COLUMN IF NOT EXISTS cargo varchar(50);
@@ -132,4 +139,3 @@ CREATE TABLE IF NOT EXISTS public.notificaciones (
     created_at timestamp with time zone DEFAULT timezone('utc'::text, now())
 );
 ALTER TABLE public.notificaciones DISABLE ROW LEVEL SECURITY;
-
