@@ -81,6 +81,38 @@ export function getEmployeeRoleGroup(cargo = '') {
   return ROLE_DEFINITIONS.ASESORES;
 }
 
+export function inferCargoFromArea(area = '', zona = '') {
+  const a = String(area || '').toUpperCase().trim();
+  const z = String(zona || '').toUpperCase().trim();
+  if (a.includes('JEFE') || a.includes('LIDER') || a.includes('ADMIN')) return 'Jefe de Tienda';
+  if (a.includes('SUBJEFE')) return 'Subjefe de Tienda';
+  if (a.includes('CAJA') || a.includes('CAJERO')) return 'Cajero';
+  if (a.includes('BODEGA')) return 'Bodeguero';
+  if (a.includes('OPERATIVO')) return 'Operativo';
+  if (a.includes('ASESOR') || z.includes('HOMBRE') || z.includes('MUJER') || z.includes('CATEGORIZACION') || z.includes('ROTATIVO')) {
+    return 'Asesor de Ventas';
+  }
+  return 'Asesor de Ventas';
+}
+
+/**
+ * Obtiene la zona correspondiente para un asesor en una fecha dada (soporta rotación semanal por fecha o zona base)
+ */
+export function getZonaForDate(empleado, dateStr) {
+  if (!empleado) return 'Sin Zona';
+  if (empleado.zonas_semanales && dateStr) {
+    if (empleado.zonas_semanales[dateStr]) return empleado.zonas_semanales[dateStr];
+    const dayNum = parseInt(dateStr.split('-')[2], 10);
+    if (!isNaN(dayNum)) {
+      if (dayNum <= 8 && empleado.zonas_semanales['1']) return empleado.zonas_semanales['1'];
+      if (dayNum >= 9 && dayNum <= 15 && empleado.zonas_semanales['2']) return empleado.zonas_semanales['2'];
+      if (dayNum >= 16 && dayNum <= 23 && empleado.zonas_semanales['3']) return empleado.zonas_semanales['3'];
+      if (dayNum >= 24 && empleado.zonas_semanales['4']) return empleado.zonas_semanales['4'];
+    }
+  }
+  return empleado.zona || 'Sin Zona';
+}
+
 /**
  * Obtiene todos los días de un mes dado en formato 'YYYY-MM-DD'
  */
