@@ -90,9 +90,16 @@ export const useHorarioStore = create((set, get) => ({
 
       const y = year || get().activeYear;
       const m = month || get().activeMonth;
-      const startDayStr = `${y}-${String(m).padStart(2, '0')}-01`;
-      const lastDayNum = new Date(y, m, 0).getDate();
-      const endDayStr = `${y}-${String(m).padStart(2, '0')}-${String(lastDayNum).padStart(2, '0')}`;
+
+      // Calcular ventana amplia de 3 meses para cubrir cualquier cambio y semanas que crucen mes
+      const prevM = m === 1 ? 12 : m - 1;
+      const prevY = m === 1 ? y - 1 : y;
+      const nextM = m === 12 ? 1 : m + 1;
+      const nextY = m === 12 ? y + 1 : y;
+
+      const startDayStr = `${prevY}-${String(prevM).padStart(2, '0')}-01`;
+      const lastDayNext = new Date(nextY, nextM, 0).getDate();
+      const endDayStr = `${nextY}-${String(nextM).padStart(2, '0')}-${String(lastDayNext).padStart(2, '0')}`;
 
       const { data, error } = await supabase
         .from('turnos')
@@ -119,23 +126,36 @@ export const useHorarioStore = create((set, get) => ({
   saveTurno: async (turno) => {
     set({ saving: true, error: null });
     try {
+      const cleanCed = String(turno.empleado_cedula || '').trim().replace(/[\s.-]/g, '').slice(0, 10);
+      let cleanTipo = String(turno.tipo_turno || 'Descanso').trim();
+      if (cleanTipo.includes('Apertura') || cleanTipo.includes('M1') || cleanTipo.includes('M2')) cleanTipo = 'Apertura';
+      else if (cleanTipo.includes('Intermedio') || cleanTipo.includes('I1') || cleanTipo.includes('I2')) cleanTipo = 'Intermedio';
+      else if (cleanTipo.includes('Cierre') || cleanTipo.includes('T1') || cleanTipo.includes('T2') || cleanTipo.includes('Tarde')) cleanTipo = 'Cierre';
+      else if (cleanTipo.includes('Descanso')) cleanTipo = 'Descanso';
+      else cleanTipo = cleanTipo.slice(0, 10);
+
+      let cleanCreadoPor = String(turno.creado_por || '1714768486').trim().replace(/[\s.-]/g, '');
+      if (cleanCreadoPor.length > 10 || cleanCreadoPor === 'Sistema') cleanCreadoPor = '1714768486';
+
+      const payload = {
+        empleado_cedula: cleanCed,
+        fecha: String(turno.fecha).slice(0, 10),
+        tipo_turno: cleanTipo,
+        hora_inicio: String(turno.hora_inicio || '00:00').slice(0, 5),
+        hora_fin: String(turno.hora_fin || '00:00').slice(0, 5),
+        creado_por: cleanCreadoPor.slice(0, 10)
+      };
+
       const { data, error } = await supabase
         .from('turnos')
-        .upsert({
-          empleado_cedula: turno.empleado_cedula,
-          fecha: turno.fecha,
-          tipo_turno: turno.tipo_turno,
-          hora_inicio: turno.hora_inicio || '00:00',
-          hora_fin: turno.hora_fin || '00:00',
-          creado_por: turno.creado_por || 'Sistema'
-        }, {
+        .upsert(payload, {
           onConflict: 'empleado_cedula,fecha'
         })
         .select();
 
       if (error) throw error;
 
-      const savedTurno = data && data[0] ? data[0] : turno;
+      const savedTurno = data && data[0] ? data[0] : payload;
       const updatedMap = {
         ...get().turnosMap,
         [`${savedTurno.empleado_cedula}_${savedTurno.fecha}`]: savedTurno
@@ -178,35 +198,67 @@ export const useHorarioStore = create((set, get) => ({
         return { success: true, count: 0 };
       }
 
-      // 0. Si hay colaboradores nuevos detectados en el Excel, agregarlos a la base de datos
+      // 0. Si hay colaboradores nuevos detectados en el Excel, agregarlos a la base de datos de forma segura
       if (newEmployeesDetected && newEmployeesDetected.length > 0) {
         for (const newEmp of newEmployeesDetected) {
+          const cleanCed = String(newEmp.cedula || '').trim().replace(/[\s.-]/g, '').slice(0, 10);
+          if (!cleanCed) continue;
           const { error: insErr } = await supabase
             .from('empleados')
             .upsert({
-              cedula: newEmp.cedula,
-              nombres: newEmp.nombres,
-              apellidos: newEmp.apellidos || '',
-              cargo: newEmp.cargo || 'Asesor de Ventas',
-              zona: newEmp.zona || 'CATEGORIZACION',
+              cedula: cleanCed,
+              nombres: String(newEmp.nombres || 'COLABORADOR').slice(0, 100),
+              apellidos: String(newEmp.apellidos || '').slice(0, 100),
+              email: String(newEmp.email || `${cleanCed}@marathonsports.ec`).slice(0, 150),
+              cargo: String(newEmp.cargo || 'Asesor de Ventas').slice(0, 50),
+              zona: String(newEmp.zona || 'CATEGORIZACION').slice(0, 50),
               rol: 'empleado',
               activo: true,
-              password_hash: newEmp.cedula,
+              password_hash: cleanCed,
               tienda_id: '7b1c4e92-3a8f-4d6e-9b2c-1f5e8d4a7c3b'
             }, { onConflict: 'cedula' });
           if (insErr) console.warn('Aviso insertando nuevo empleado:', insErr);
         }
       }
 
-      // 1. Limpiar campos que no estén en la base de datos de turnos
-      const cleanTurnos = turnosArray.map(t => ({
-        empleado_cedula: t.empleado_cedula,
-        fecha: t.fecha,
-        tipo_turno: t.tipo_turno || 'Descanso',
-        hora_inicio: t.hora_inicio || '00:00',
-        hora_fin: t.hora_fin || '00:00',
-        creado_por: t.creado_por || '1714768486'
-      }));
+      // 1. Limpiar campos y garantizar longitud estricta compatible con PostgreSQL
+      const cleanTurnos = turnosArray.map(t => {
+        const cleanCed = String(t.empleado_cedula || '').trim().replace(/[\s.-]/g, '').slice(0, 10);
+        let cleanTipo = String(t.tipo_turno || 'Descanso').trim();
+        
+        // Mapear tipos universales <= 10 caracteres
+        if (cleanTipo.includes('Apertura') || cleanTipo.includes('M1') || cleanTipo.includes('M2')) {
+          cleanTipo = 'Apertura';
+        } else if (cleanTipo.includes('Intermedio') || cleanTipo.includes('I1') || cleanTipo.includes('I2')) {
+          cleanTipo = 'Intermedio';
+        } else if (cleanTipo.includes('Cierre') || cleanTipo.includes('T1') || cleanTipo.includes('T2') || cleanTipo.includes('Tarde')) {
+          cleanTipo = 'Cierre';
+        } else if (cleanTipo.includes('Descanso') || cleanTipo.toUpperCase() === 'L' || cleanTipo.toUpperCase() === 'LIBRE') {
+          cleanTipo = 'Descanso';
+        } else if (cleanTipo.includes('Vacacion') || cleanTipo.includes('Feriado') || cleanTipo.includes('Permiso')) {
+          cleanTipo = 'Descanso';
+        } else if (cleanTipo === 'Mañana') {
+          cleanTipo = 'Mañana';
+        } else {
+          cleanTipo = cleanTipo.slice(0, 10);
+        }
+
+        const cleanInicio = String(t.hora_inicio || '00:00').trim().slice(0, 5);
+        const cleanFin = String(t.hora_fin || '00:00').trim().slice(0, 5);
+        let cleanCreadoPor = String(t.creado_por || '1714768486').trim().replace(/[\s.-]/g, '');
+        if (cleanCreadoPor.length > 10 || cleanCreadoPor === 'importadorexcel' || cleanCreadoPor === 'Sistema') {
+          cleanCreadoPor = '1714768486';
+        }
+
+        return {
+          empleado_cedula: cleanCed,
+          fecha: String(t.fecha).slice(0, 10),
+          tipo_turno: cleanTipo,
+          hora_inicio: cleanInicio,
+          hora_fin: cleanFin,
+          creado_por: cleanCreadoPor.slice(0, 10)
+        };
+      });
 
       // 2. Insertar/Upsert en bloques
       const chunkSize = 100;
@@ -222,14 +274,23 @@ export const useHorarioStore = create((set, get) => ({
       // 3. Sincronizar zonas de empleados si se detectaron en el archivo
       if (zonesDetected && Object.keys(zonesDetected).length > 0) {
         for (const [cedula, zona] of Object.entries(zonesDetected)) {
-          const updatePayload = { zona };
+          const cleanCed = String(cedula).trim().slice(0, 10);
+          const updatePayload = { zona: String(zona).slice(0, 50) };
           if (weeklyZonesDetected && weeklyZonesDetected[cedula]) {
-            updatePayload.zonas_semanales = weeklyZonesDetected[cedula];
+            try {
+              const { error: zErr } = await supabase
+                .from('empleados')
+                .update({ ...updatePayload, zonas_semanales: weeklyZonesDetected[cedula] })
+                .eq('cedula', cleanCed);
+              if (zErr) {
+                await supabase.from('empleados').update(updatePayload).eq('cedula', cleanCed);
+              }
+            } catch (e) {
+              await supabase.from('empleados').update(updatePayload).eq('cedula', cleanCed);
+            }
+          } else {
+            await supabase.from('empleados').update(updatePayload).eq('cedula', cleanCed);
           }
-          await supabase
-            .from('empleados')
-            .update(updatePayload)
-            .eq('cedula', cedula);
         }
         await get().fetchEmpleados('todos');
       }
