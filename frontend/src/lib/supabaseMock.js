@@ -179,6 +179,25 @@ export const supabaseMock = {
         queryData = queryData.filter(row => valSet.has(String(row[field])));
         return builder;
       },
+      or: (filterStr) => {
+        if (!filterStr || typeof filterStr !== 'string') return builder;
+        const clauses = filterStr.split(',').map(c => c.trim());
+        queryData = queryData.filter(row => {
+          return clauses.some(clause => {
+            const parts = clause.split('.');
+            if (parts.length >= 3) {
+              const field = parts[0];
+              const op = parts[1];
+              const val = parts.slice(2).join('.');
+              if (op === 'eq') return String(row[field] ?? '').toLowerCase() === val.toLowerCase();
+              if (op === 'neq') return String(row[field] ?? '').toLowerCase() !== val.toLowerCase();
+              if (op === 'ilike' || op === 'like') return String(row[field] ?? '').toLowerCase().includes(val.replace(/%/g, '').toLowerCase());
+            }
+            return false;
+          });
+        });
+        return builder;
+      },
       order: (field, { ascending = true } = {}) => {
         queryData = [...queryData].sort((a, b) => {
           if (a[field] < b[field]) return ascending ? -1 : 1;
