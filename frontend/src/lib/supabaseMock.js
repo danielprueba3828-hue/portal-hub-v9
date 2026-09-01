@@ -2,7 +2,7 @@
  * Simulador de Supabase utilizando LocalStorage
  * Permite ejecutar la aplicación al 100% de manera local y offline.
  */
-import seedCleanData from './seed_clean_data.json';
+import seedCleanData from './seedCleanData.js';
 import seedMetas from '../services/seed_metas_agosto.json';
 
 const OFFICIAL_CEDULAS = new Set(seedCleanData.empleados.map(e => e.cedula));
