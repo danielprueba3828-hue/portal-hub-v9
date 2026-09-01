@@ -182,7 +182,8 @@ export function interpretShiftCell(rawVal) {
 }
 
 /**
- * Parsea una hoja de cálculo completa en formato MATRIZ sincronizando siempre el Día 1 del Excel con el Día 1 del mes seleccionado
+ * Parsea una hoja de cálculo completa en formato MATRIZ sincronizando siempre los días del Excel con el mes seleccionado.
+ * Soporta de manera inteligente tanto la nueva plantilla multi-semanal con rotación de zonas como la plantilla clásica continua.
  */
 export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = null, targetYear = null) {
   // Buscar hoja HORARIO o la primera disponible
@@ -202,7 +203,153 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
   const month = targetMonth || (now.getMonth() + 1);
   const daysInMonth = new Date(year, month, 0).getDate();
 
-  // 1. Detectar columnas de días (Día 1 a Día 31) en las primeras filas (por ejemplo fila 3 o 2)
+  const f2 = data[2] || [];
+  const f3 = data[3] || [];
+
+  // 1. Detectar si el formato es multi-bloque semanal (varias columnas con encabezado 'NOMBRE')
+  const blocks = [];
+  let currentBlock = null;
+
+  for (let c = 0; c < Math.max(f2.length, f3.length); c++) {
+    const h2 = f2[c] !== undefined ? String(f2[c]).trim().toUpperCase() : '';
+    const dayVal = f3[c];
+
+    if (h2 === 'NOMBRE') {
+      if (currentBlock) blocks.push(currentBlock);
+      currentBlock = {
+        nameCol: c,
+        cedulaCol: c + 1,
+        days: []
+      };
+    } else if (currentBlock) {
+      const num = typeof dayVal === 'number' ? dayVal : parseInt(String(dayVal).trim(), 10);
+      if (!isNaN(num) && num >= 1 && num <= 31) {
+        currentBlock.days.push({ dayNumber: num, colIndex: c });
+      }
+    }
+  }
+  if (currentBlock) blocks.push(currentBlock);
+
+  // Si se encontraron 2 o más bloques semanales, procesar por bloques
+  if (blocks.length >= 2) {
+    const turnosParsed = [];
+    const employeesFound = new Set();
+    const zonesDetected = {};
+    const weeklyZonesDetected = {}; // cedula -> { '1': zona1, '2': zona2, ... }
+    const newEmployeesDetected = [];
+    const unmappedRows = [];
+
+    for (let r = 4; r < data.length; r++) {
+      const row = data[r];
+      if (!row || row.length === 0) continue;
+
+      const isEmployeeRow = blocks.some(b => row[b.nameCol] || row[b.cedulaCol]);
+      if (!isEmployeeRow) continue;
+
+      const area = row[0];
+      const defaultZona = row[1];
+
+      blocks.forEach((b, blockIdx) => {
+        const rawName = row[b.nameCol];
+        const rawCedula = row[b.cedulaCol];
+        if (!rawName && !rawCedula) return;
+        if (rawName && (String(rawName).includes('NOMBRE') || String(rawName).includes('TOTAL') || String(rawName).includes('GENERAL'))) return;
+
+        let emp = matchEmployee(rawCedula, rawName, employeesList);
+        
+        // Si es personal nuevo no registrado en DB, crearlo automáticamente para no perder ningún turno
+        if (!emp && (rawCedula || rawName)) {
+          const cleanCed = normalizeCedula(rawCedula) || `temp_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+          const cleanNom = String(rawName).trim();
+          emp = {
+            cedula: cleanCed,
+            nombres: cleanNom,
+            apellidos: '',
+            cargo: defaultZona ? (defaultZona.includes('BODEGA') ? 'Bodeguero' : defaultZona.includes('CAJA') ? 'Cajero' : 'Asesor de Ventas') : 'Asesor de Ventas',
+            zona: defaultZona ? String(defaultZona).trim().toUpperCase() : 'CATEGORIZACION',
+            rol: 'empleado',
+            activo: true,
+            isNewFromExcel: true
+          };
+          if (!newEmployeesDetected.some(ne => ne.cedula === emp.cedula)) {
+            newEmployeesDetected.push(emp);
+          }
+        }
+
+        if (!emp) {
+          unmappedRows.push(`Semana ${blockIdx + 1}, Fila ${r + 1}: ${rawName} (${rawCedula || 'Sin cédula'})`);
+          return;
+        }
+
+        employeesFound.add(emp.cedula);
+
+        if (defaultZona && String(defaultZona).trim() !== '' && String(defaultZona).toUpperCase() !== 'UNDEFINED') {
+          const cleanZ = String(defaultZona).trim().toUpperCase();
+          zonesDetected[emp.cedula] = cleanZ;
+          if (!weeklyZonesDetected[emp.cedula]) weeklyZonesDetected[emp.cedula] = {};
+          weeklyZonesDetected[emp.cedula][String(blockIdx + 1)] = cleanZ;
+        }
+
+        const entryRow = row;
+        const exitRow = data[r + 3];
+
+        b.days.forEach(d => {
+          if (d.dayNumber > daysInMonth) return;
+
+          const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d.dayNumber).padStart(2, '0')}`;
+          const entryRaw = entryRow[d.colIndex];
+          const exitRaw = exitRow ? exitRow[d.colIndex] : null;
+
+          let turnoObj = {
+            empleado_cedula: emp.cedula,
+            fecha: dateStr,
+            tipo_turno: 'Descanso',
+            hora_inicio: '00:00',
+            hora_fin: '00:00',
+            horas_programadas: 0,
+            creado_por: 'importador_excel'
+          };
+
+          const entryTime = formatExcelTime(entryRaw);
+          const exitTime = formatExcelTime(exitRaw);
+
+          if (entryTime && exitTime && entryTime !== '00:00' && exitTime !== '00:00') {
+            const h = parseInt(entryTime.split(':')[0], 10);
+            let tipo = 'Intermedio';
+            if (h < 11) tipo = 'Apertura (M1)';
+            else if (h >= 11 && h < 12) tipo = 'Intermedio (I1)';
+            else if (h >= 12 && h < 13) tipo = 'Intermedio (I2)';
+            else tipo = 'Cierre (T1)';
+
+            turnoObj.tipo_turno = tipo;
+            turnoObj.hora_inicio = entryTime;
+            turnoObj.hora_fin = exitTime;
+            turnoObj.horas_programadas = 8;
+          }
+
+          turnosParsed.push(turnoObj);
+        });
+      });
+
+      r += 4; // Saltar las filas secundarias de este colaborador
+    }
+
+    return {
+      year,
+      month,
+      daysCount: daysInMonth,
+      turnos: turnosParsed,
+      totalTurnos: turnosParsed.length,
+      employeesFoundCount: employeesFound.size,
+      totalEmployeesInDB: employeesList.length + newEmployeesDetected.length,
+      unmappedRows,
+      zonesDetected,
+      weeklyZonesDetected,
+      newEmployeesDetected
+    };
+  }
+
+  // 2. Modo clásico (Plantilla de una sola sección con días continuos 1..31)
   let dayCols = [];
 
   for (let r = 0; r <= Math.min(data.length - 1, 8); r++) {
@@ -222,7 +369,6 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
     }
   }
 
-  // Si no se encontró fila numérica de días, generar columnas consecutivas a partir de la col 9
   if (dayCols.length === 0) {
     for (let d = 1; d <= 31; d++) {
       dayCols.push({ dayNumber: d, colIndex: 8 + d });
@@ -230,8 +376,6 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
   }
 
   dayCols.sort((a, b) => a.dayNumber - b.dayNumber);
-
-  // Filtrar solo los días que pertenecen al mes destino seleccionado (ej: 1..28, 1..30 o 1..31)
   const targetDayCols = dayCols.filter(d => d.dayNumber <= daysInMonth);
 
   const turnosParsed = [];
@@ -239,7 +383,6 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
   const unmappedRows = [];
   const zonesDetected = {};
 
-  // 2. Recorrer colaboradores
   for (let r = 0; r < data.length; r++) {
     const row = data[r];
     if (!row || row.length === 0) continue;
@@ -264,7 +407,6 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
       zonesDetected[matchedEmp.cedula] = String(rawZona).trim().toUpperCase();
     }
 
-    // Verificar si el formato tiene 5 filas por empleado (Entrada, Salida Almuerzo, Entrada Almuerzo, Salida, Total)
     const hasMultipleRows = data[r + 3] && data[r + 3][1] === undefined;
 
     targetDayCols.forEach(({ dayNumber, colIndex }) => {
@@ -312,7 +454,7 @@ export function parseScheduleExcelSheet(workbook, employeesList, targetMonth = n
     });
 
     if (hasMultipleRows) {
-      r += 4; // Saltar las filas complementarias del mismo empleado
+      r += 4;
     }
   }
 
