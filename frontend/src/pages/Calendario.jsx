@@ -150,12 +150,12 @@ export default function Calendario() {
   }, [deleteTurno]);
 
   // Importar desde Excel
-  const handleConfirmImport = useCallback(async (turnosList, targetYear, targetMonth, zonesDetected) => {
-    const res = await saveTurnosMasivos(turnosList, targetYear, targetMonth, zonesDetected);
+  const handleConfirmImport = useCallback(async (turnosList, targetYear, targetMonth, zonesDetected, weeklyZonesDetected, newEmployeesDetected) => {
+    const res = await saveTurnosMasivos(turnosList, targetYear, targetMonth, zonesDetected, weeklyZonesDetected, newEmployeesDetected);
     if (res.success) {
       setActiveYear(targetYear);
       setActiveMonth(targetMonth);
-      alert(`¡Horarios importados exitosamente! Se procesaron ${res.count} turnos sincronizados con el día 1 de ${targetMonth}/${targetYear}.`);
+      alert(`¡Horarios importados exitosamente! Se procesaron ${res.count} turnos sincronizados con el mes ${targetMonth}/${targetYear}.`);
       return true;
     } else {
       alert(`Error en la importación: ${res.error}`);
